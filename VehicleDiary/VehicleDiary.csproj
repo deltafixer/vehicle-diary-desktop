@@ -38,8 +38,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.2.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.2.0\lib\net45\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="Caliburn.Micro, Version=3.2.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
       <HintPath>..\packages\Caliburn.Micro.Core.3.2.0\lib\net45\Caliburn.Micro.dll</HintPath>
+    </Reference>
+    <Reference Include="Caliburn.Micro.Autofac, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caliburn.Micro.AutofacBootstrap.3.0.1.17\lib\net40\Caliburn.Micro.Autofac.dll</HintPath>
     </Reference>
     <Reference Include="Caliburn.Micro.Platform, Version=3.2.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
       <HintPath>..\packages\Caliburn.Micro.3.2.0\lib\net45\Caliburn.Micro.Platform.dll</HintPath>
@@ -81,6 +87,33 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Login\Messages\RegisterUserMessage.cs" />
+    <Compile Include="Login\Views\LoginConductorView.xaml.cs">
+      <DependentUpon>LoginConductorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Login\Views\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Login\Views\RegisterView.xaml.cs">
+      <DependentUpon>RegisterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Login\Messages\AuthenticatedMessage.cs" />
+    <Compile Include="Main\Messages\NavigateMessage.cs" />
+    <Compile Include="Main\ViewModels\MainConductorViewModel.cs" />
+    <Compile Include="Main\ViewModels\HeaderViewModel.cs" />
+    <Compile Include="Main\ViewModels\HomeViewModel.cs" />
+    <Compile Include="Login\ViewModels\LoginConductorViewModel.cs" />
+    <Compile Include="Login\ViewModels\LoginViewModel.cs" />
+    <Compile Include="Login\ViewModels\RegisterViewModel.cs" />
+    <Compile Include="Main\Views\HeaderView.xaml.cs">
+      <DependentUpon>HeaderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Main\Views\HomeView.xaml.cs">
+      <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Main\Views\MainConductorView.xaml.cs">
+      <DependentUpon>MainConductorView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\202008081119523_CreateDatabase.cs" />
     <Compile Include="Migrations\202008081119523_CreateDatabase.designer.cs">
       <DependentUpon>202008081119523_CreateDatabase.cs</DependentUpon>
@@ -93,11 +126,12 @@
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\VehicleModel.cs" />
     <Compile Include="Models\VehicleAccidentModel.cs" />
+    <Compile Include="Providers\UserProvider.cs" />
     <Compile Include="VehicleDiaryDbContext.cs" />
     <Compile Include="Models\VehicleServiceModel.cs" />
     <Compile Include="Models\VehicleSpecificationModel.cs" />
-    <Compile Include="ViewModels\RootViewModel.cs" />
-    <Compile Include="Views\RootView.xaml.cs">
+    <Compile Include="RootViewModel.cs" />
+    <Compile Include="RootView.xaml.cs">
       <DependentUpon>RootView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -134,7 +168,31 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Page Include="Views\RootView.xaml">
+    <Page Include="Login\Views\LoginConductorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Login\Views\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Login\Views\RegisterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Main\Views\HeaderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Main\Views\HomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Main\Views\MainConductorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RootView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
