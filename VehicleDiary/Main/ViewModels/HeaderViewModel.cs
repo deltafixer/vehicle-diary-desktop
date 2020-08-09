@@ -11,6 +11,7 @@ namespace VehicleDiary.Main.ViewModels
         {
             _eventAggregator = eventAggregator;
         }
-        public void Home() => _eventAggregator.PublishOnUIThread(new NavigateMessage(NavigationOptions.Home));
+
+        public void Home() => _eventAggregator.PublishOnUIThread(new NavigationMessage(NavigationOptions.Home));
     }
 }

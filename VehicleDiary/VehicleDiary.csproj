@@ -87,24 +87,31 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Login\Messages\RegisterUserMessage.cs" />
-    <Compile Include="Login\Views\LoginConductorView.xaml.cs">
-      <DependentUpon>LoginConductorView.xaml</DependentUpon>
+    <Compile Include="Authenticate\Messages\AuthenticationNavigationMessage.cs" />
+    <Compile Include="Authenticate\ViewModels\RegisterPersonViewModel.cs" />
+    <Compile Include="Authenticate\ViewModels\RegisterServiceViewModel.cs" />
+    <Compile Include="Authenticate\ViewModels\RegisterTypeViewModel.cs" />
+    <Compile Include="Authenticate\Views\AuthenticationConductorView.xaml.cs">
+      <DependentUpon>AuthenticationConductorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Login\Views\LoginView.xaml.cs">
+    <Compile Include="Authenticate\Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Login\Views\RegisterView.xaml.cs">
-      <DependentUpon>RegisterView.xaml</DependentUpon>
+    <Compile Include="Authenticate\Views\RegisterPersonView.xaml.cs">
+      <DependentUpon>RegisterPersonView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Login\Messages\AuthenticatedMessage.cs" />
-    <Compile Include="Main\Messages\NavigateMessage.cs" />
+    <Compile Include="Authenticate\ViewModels\LoginViewModel.cs" />
+    <Compile Include="Authenticate\Views\RegisterServiceView.xaml.cs">
+      <DependentUpon>RegisterServiceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Authenticate\Views\RegisterTypeView.xaml.cs">
+      <DependentUpon>RegisterTypeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Main\Messages\NavigationMessage.cs" />
     <Compile Include="Main\ViewModels\MainConductorViewModel.cs" />
     <Compile Include="Main\ViewModels\HeaderViewModel.cs" />
     <Compile Include="Main\ViewModels\HomeViewModel.cs" />
-    <Compile Include="Login\ViewModels\LoginConductorViewModel.cs" />
-    <Compile Include="Login\ViewModels\LoginViewModel.cs" />
-    <Compile Include="Login\ViewModels\RegisterViewModel.cs" />
+    <Compile Include="Authenticate\ViewModels\AuthenticationConductorViewModel.cs" />
     <Compile Include="Main\Views\HeaderView.xaml.cs">
       <DependentUpon>HeaderView.xaml</DependentUpon>
     </Compile>
@@ -126,6 +133,7 @@
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\VehicleModel.cs" />
     <Compile Include="Models\VehicleAccidentModel.cs" />
+    <Compile Include="Authenticate\Views\PasswordBoxAttach.cs" />
     <Compile Include="Providers\UserProvider.cs" />
     <Compile Include="VehicleDiaryDbContext.cs" />
     <Compile Include="Models\VehicleServiceModel.cs" />
@@ -168,15 +176,23 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Page Include="Login\Views\LoginConductorView.xaml">
+    <Page Include="Authenticate\Views\AuthenticationConductorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Login\Views\LoginView.xaml">
+    <Page Include="Authenticate\Views\LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Login\Views\RegisterView.xaml">
+    <Page Include="Authenticate\Views\RegisterPersonView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Authenticate\Views\RegisterServiceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Authenticate\Views\RegisterTypeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

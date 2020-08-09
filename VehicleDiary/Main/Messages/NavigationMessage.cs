@@ -1,8 +1,8 @@
 ﻿namespace VehicleDiary.Main.Messages
 {
-    public sealed class NavigateMessage
+    public sealed class NavigationMessage
     {
-        public NavigateMessage(NavigationOptions navigationOption)
+        public NavigationMessage(NavigationOptions navigationOption)
         {
             NavigateTo = navigationOption;
         }
@@ -10,6 +10,7 @@
     }
     public enum NavigationOptions
     {
-        Home
+        Home,
+        Authentication
     }
 }

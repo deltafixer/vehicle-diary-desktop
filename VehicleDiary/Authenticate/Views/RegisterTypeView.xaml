@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="VehicleDiary.Authenticate.Views.RegisterTypeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:VehicleDiary.Authenticate.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Background="WhiteSmoke">
+    <Grid>
+        <StackPanel Orientation="Vertical" VerticalAlignment="Center" Width="250">
+            <TextBlock Text="Register" HorizontalAlignment="Center" FontSize="36" Margin="0, 0, 0, 10" />
+
+            <Label Content="Profile type" FontWeight="Bold" Margin="0, 0, 0, 10"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <RadioButton Name="PersonTypeIsChecked" GroupName="ProfileTypeGroup" Content="Person"  Margin="0, 0, 10, 0" />
+                <RadioButton Name="ServiceTypeIsChecked" GroupName="ProfileTypeGroup" Content="Service" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 20, 0, 20">
+                <Button x:Name="Back" Content="Back" Width="100" Margin="0, 0, 20, 0"/>
+                <Button x:Name="Continue" Content="Continue" Width="100"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

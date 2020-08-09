@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace VehicleDiary.Login.Views
+namespace VehicleDiary.Authenticate.Views
 {
     /// <summary>
-    /// Interaction logic for LoginView.xaml
+    /// Interaction logic for RegisterServiceView.xaml
     /// </summary>
-    public partial class LoginView : UserControl
+    public partial class RegisterServiceView : UserControl
     {
-        public LoginView()
+        public RegisterServiceView()
         {
             InitializeComponent();
         }

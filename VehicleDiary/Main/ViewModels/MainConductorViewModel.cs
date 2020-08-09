@@ -3,10 +3,11 @@ using VehicleDiary.Main.Messages;
 
 namespace VehicleDiary.Main.ViewModels
 {
-    public class MainConductorViewModel : Conductor<Screen>.Collection.OneActive, IHandle<NavigateMessage>
+    public class MainConductorViewModel : Conductor<Screen>.Collection.OneActive, IHandle<NavigationMessage>
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly HomeViewModel _homeViewModel;
+
         public MainConductorViewModel(IEventAggregator eventAggregator, HeaderViewModel headerViewModel, HomeViewModel homeViewModel)
         {
             _eventAggregator = eventAggregator;
@@ -31,7 +32,7 @@ namespace VehicleDiary.Main.ViewModels
             _eventAggregator.Unsubscribe(this);
         }
 
-        public void Handle(NavigateMessage message)
+        public void Handle(NavigationMessage message)
         {
             switch (message.NavigateTo)
             {
@@ -41,7 +42,6 @@ namespace VehicleDiary.Main.ViewModels
                 default:
                     break;
             }
-
         }
     }
 }
