@@ -121,9 +121,9 @@
     <Compile Include="Main\Views\MainConductorView.xaml.cs">
       <DependentUpon>MainConductorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202008081119523_CreateDatabase.cs" />
-    <Compile Include="Migrations\202008081119523_CreateDatabase.designer.cs">
-      <DependentUpon>202008081119523_CreateDatabase.cs</DependentUpon>
+    <Compile Include="Migrations\202008110642441_CreateDatabase.cs" />
+    <Compile Include="Migrations\202008110642441_CreateDatabase.designer.cs">
+      <DependentUpon>202008110642441_CreateDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Enums.cs" />
@@ -134,7 +134,8 @@
     <Compile Include="Models\VehicleModel.cs" />
     <Compile Include="Models\VehicleAccidentModel.cs" />
     <Compile Include="Authenticate\Views\PasswordBoxAttach.cs" />
-    <Compile Include="Providers\UserProvider.cs" />
+    <Compile Include="Services\ICRUDService.cs" />
+    <Compile Include="Services\UniversalCRUDService.cs" />
     <Compile Include="VehicleDiaryDbContext.cs" />
     <Compile Include="Models\VehicleServiceModel.cs" />
     <Compile Include="Models\VehicleSpecificationModel.cs" />
@@ -158,8 +159,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\202008081119523_CreateDatabase.resx">
-      <DependentUpon>202008081119523_CreateDatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202008110642441_CreateDatabase.resx">
+      <DependentUpon>202008110642441_CreateDatabase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

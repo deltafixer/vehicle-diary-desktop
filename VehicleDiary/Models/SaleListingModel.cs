@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace VehicleDiary.Models
 {
     [Table("SaleListing")]
-    class SaleListingModel
+    public class SaleListingModel
     {
         public int Id { get; set; }
         // not to have "unable to determine the principal end..."

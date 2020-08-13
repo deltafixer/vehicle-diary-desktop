@@ -3,7 +3,7 @@ using static VehicleDiary.Models.Enums.UserEnums;
 
 namespace VehicleDiary.Models
 {
-    abstract class UserModel
+    public abstract class UserModel
     {
         [Key]
         [MaxLength(30)]

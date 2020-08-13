@@ -6,7 +6,7 @@ using static VehicleDiary.Models.Enums.UserEnums;
 namespace VehicleDiary.Models
 {
     [Table("ServiceUser")]
-    class ServiceUserModel : UserModel
+    public class ServiceUserModel : UserModel
     {
 		[Required]
 		public string Name { get; set; }

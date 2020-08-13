@@ -6,7 +6,7 @@ using static VehicleDiary.Models.Enums.VehicleEnums;
 namespace VehicleDiary.Models
 {
     [Table("Vehicle")]
-    class VehicleModel
+    public class VehicleModel
     {
         public VehicleModel()
         {

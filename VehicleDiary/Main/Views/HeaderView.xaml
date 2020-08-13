@@ -6,10 +6,10 @@
              xmlns:local="clr-namespace:VehicleDiary.Main.Views"
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="800">
-    <Grid>
-        <StackPanel Orientation="Horizontal">
-            <Button x:Name="Home" Content="Home" Width="150" FontSize="18"/>
-        </StackPanel>
-            
-    </Grid>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top" Height="auto" FontSize="18">
+            <MenuItem Header="_Home"></MenuItem>
+            <MenuItem Header="_Profile"></MenuItem>
+        </Menu>
+    </DockPanel>
 </UserControl>

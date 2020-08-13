@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace VehicleDiary.Models
 {
     [Table("VehicleService")]
-    class VehicleServiceModel
+    public class VehicleServiceModel
     {
         public int Id { get; set; }
         [Required]

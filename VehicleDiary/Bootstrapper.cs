@@ -3,7 +3,8 @@ using Caliburn.Micro.Autofac;
 using System.Windows;
 using VehicleDiary.Authenticate.ViewModels;
 using VehicleDiary.Main.ViewModels;
-using VehicleDiary.Providers;
+using VehicleDiary.Models;
+using VehicleDiary.Services;
 using VehicleDiary.ViewModels;
 
 namespace VehicleDiary
@@ -28,7 +29,8 @@ namespace VehicleDiary
         protected override void ConfigureContainer(ContainerBuilder builder)
         {
             builder.RegisterType<RootViewModel>().SingleInstance();
-            builder.RegisterType<UserProvider>().SingleInstance();
+            builder.RegisterType<VehicleDiaryDbContext>().InstancePerDependency();
+            builder.RegisterType<UniversalCRUDService<PersonUserModel>>().InstancePerDependency();
 
             // AUTHENTICATE
             builder.RegisterType<AuthenticationConductorViewModel>().SingleInstance();

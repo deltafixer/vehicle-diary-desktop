@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace VehicleDiary.Models
 {
     [Table("PersonUser")]
-    class PersonUserModel : UserModel
+    public class PersonUserModel : UserModel
     {
         public PersonUserModel()
         {
@@ -15,9 +15,11 @@ namespace VehicleDiary.Models
         [Required]
         [MaxLength(20)]
         public string FirstName { get; set; }
+
         [Required]
         [MaxLength(20)]
         public string LastName { get; set; }
+        
         public ICollection<VehicleModel> Vehicles { get; set; }
     }
 }
