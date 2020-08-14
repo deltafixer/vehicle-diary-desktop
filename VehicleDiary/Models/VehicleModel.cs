@@ -10,7 +10,7 @@ namespace VehicleDiary.Models
     {
         public VehicleModel()
         {
-            Owners = new HashSet<PersonUserModel>();
+            Owners = new HashSet<PersonUserVehicleModel>();
         }
 
         [Key]
@@ -18,7 +18,7 @@ namespace VehicleDiary.Models
         public Make Make { get; set; }
         public Model Model { get; set; }
         public VehicleSpecificationModel VehicleSpecification { get; set; }
-        public ICollection<PersonUserModel> Owners { get; set; }
+        public ICollection<PersonUserVehicleModel> Owners { get; set; }
         public ICollection<VehicleServiceModel> Services { get; set; }
         public ICollection<VehicleAccidentModel> Accidents { get; set; }
         public SaleListingModel SaleListing { get; set; }

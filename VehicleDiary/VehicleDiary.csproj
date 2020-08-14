@@ -121,13 +121,14 @@
     <Compile Include="Main\Views\MainConductorView.xaml.cs">
       <DependentUpon>MainConductorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202008110642441_CreateDatabase.cs" />
-    <Compile Include="Migrations\202008110642441_CreateDatabase.designer.cs">
-      <DependentUpon>202008110642441_CreateDatabase.cs</DependentUpon>
+    <Compile Include="Migrations\202008142131423_CreateDatabase.cs" />
+    <Compile Include="Migrations\202008142131423_CreateDatabase.designer.cs">
+      <DependentUpon>202008142131423_CreateDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Enums.cs" />
     <Compile Include="Models\PersonUserModel.cs" />
+    <Compile Include="Models\PersonUserVehicleModel.cs" />
     <Compile Include="Models\SaleListingModel.cs" />
     <Compile Include="Models\ServiceUserModel.cs" />
     <Compile Include="Models\UserModel.cs" />
@@ -159,8 +160,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\202008110642441_CreateDatabase.resx">
-      <DependentUpon>202008110642441_CreateDatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202008142131423_CreateDatabase.resx">
+      <DependentUpon>202008142131423_CreateDatabase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

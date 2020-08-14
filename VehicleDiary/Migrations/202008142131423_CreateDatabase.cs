@@ -21,6 +21,19 @@
                 .PrimaryKey(t => t.Username);
             
             CreateTable(
+                "dbo.PersonUserVehicle",
+                c => new
+                    {
+                        Username = c.String(nullable: false, maxLength: 30),
+                        Vin = c.String(nullable: false, maxLength: 128),
+                    })
+                .PrimaryKey(t => new { t.Username, t.Vin })
+                .ForeignKey("dbo.PersonUser", t => t.Username, cascadeDelete: true)
+                .ForeignKey("dbo.Vehicle", t => t.Vin, cascadeDelete: true)
+                .Index(t => t.Username)
+                .Index(t => t.Vin);
+            
+            CreateTable(
                 "dbo.Vehicle",
                 c => new
                     {
@@ -108,19 +121,6 @@
                 .ForeignKey("dbo.Vehicle", t => t.Vehicle_Vin)
                 .Index(t => t.Vehicle_Vin);
             
-            CreateTable(
-                "dbo.VehicleModelPersonUserModels",
-                c => new
-                    {
-                        VehicleModel_Vin = c.String(nullable: false, maxLength: 128),
-                        PersonUserModel_Username = c.String(nullable: false, maxLength: 30),
-                    })
-                .PrimaryKey(t => new { t.VehicleModel_Vin, t.PersonUserModel_Username })
-                .ForeignKey("dbo.Vehicle", t => t.VehicleModel_Vin, cascadeDelete: true)
-                .ForeignKey("dbo.PersonUser", t => t.PersonUserModel_Username, cascadeDelete: true)
-                .Index(t => t.VehicleModel_Vin)
-                .Index(t => t.PersonUserModel_Username);
-            
         }
         
         public override void Down()
@@ -129,23 +129,23 @@
             DropForeignKey("dbo.VehicleService", "Vehicle_Vin", "dbo.Vehicle");
             DropForeignKey("dbo.VehicleService", "ServicedBy_Username", "dbo.ServiceUser");
             DropForeignKey("dbo.SaleListing", "Vehicle_Vin", "dbo.Vehicle");
-            DropForeignKey("dbo.VehicleModelPersonUserModels", "PersonUserModel_Username", "dbo.PersonUser");
-            DropForeignKey("dbo.VehicleModelPersonUserModels", "VehicleModel_Vin", "dbo.Vehicle");
+            DropForeignKey("dbo.PersonUserVehicle", "Vin", "dbo.Vehicle");
             DropForeignKey("dbo.VehicleAccident", "Vehicle_Vin", "dbo.Vehicle");
-            DropIndex("dbo.VehicleModelPersonUserModels", new[] { "PersonUserModel_Username" });
-            DropIndex("dbo.VehicleModelPersonUserModels", new[] { "VehicleModel_Vin" });
+            DropForeignKey("dbo.PersonUserVehicle", "Username", "dbo.PersonUser");
             DropIndex("dbo.VehicleSpecification", new[] { "Vehicle_Vin" });
             DropIndex("dbo.VehicleService", new[] { "Vehicle_Vin" });
             DropIndex("dbo.VehicleService", new[] { "ServicedBy_Username" });
             DropIndex("dbo.SaleListing", new[] { "Vehicle_Vin" });
             DropIndex("dbo.VehicleAccident", new[] { "Vehicle_Vin" });
-            DropTable("dbo.VehicleModelPersonUserModels");
+            DropIndex("dbo.PersonUserVehicle", new[] { "Vin" });
+            DropIndex("dbo.PersonUserVehicle", new[] { "Username" });
             DropTable("dbo.VehicleSpecification");
             DropTable("dbo.ServiceUser");
             DropTable("dbo.VehicleService");
             DropTable("dbo.SaleListing");
             DropTable("dbo.VehicleAccident");
             DropTable("dbo.Vehicle");
+            DropTable("dbo.PersonUserVehicle");
             DropTable("dbo.PersonUser");
         }
     }

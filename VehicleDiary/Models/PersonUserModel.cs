@@ -9,7 +9,7 @@ namespace VehicleDiary.Models
     {
         public PersonUserModel()
         {
-            Vehicles = new HashSet<VehicleModel>();
+            Vehicles = new HashSet<PersonUserVehicleModel>();
         }
 
         [Required]
@@ -20,6 +20,6 @@ namespace VehicleDiary.Models
         [MaxLength(20)]
         public string LastName { get; set; }
         
-        public ICollection<VehicleModel> Vehicles { get; set; }
+        public ICollection<PersonUserVehicleModel> Vehicles { get; set; }
     }
 }
