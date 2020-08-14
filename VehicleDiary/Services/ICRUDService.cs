@@ -11,7 +11,7 @@ namespace VehicleDiary.Services
 
         Task<T> Create(T entity);
 
-        Task<T> Update(int id, T entity);
+        Task<T> Update(T entity);
 
         Task<bool> Delete<S>(S id);
     }

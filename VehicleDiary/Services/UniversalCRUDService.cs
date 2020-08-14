@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Migrations;
+using System.Linq;
 using System.Threading.Tasks;
+using VehicleDiary.Models;
 
 namespace VehicleDiary.Services
 {
@@ -37,14 +41,32 @@ namespace VehicleDiary.Services
             return _context.Set<T>().FindAsync(id);
         }
 
-        public Task<IEnumerable<T>> GetAll()
+        public async Task<IEnumerable<T>> GetAll()
         {
-            throw new NotImplementedException();
+            return await _context.Set<T>().ToListAsync();
         }
 
-        public Task<T> Update(int id, T entity)
+        public async Task<T> Update(T entity)
         {
-            throw new NotImplementedException();
+            _context.Set<T>().AddOrUpdate(entity);
+            await _context.SaveChangesAsync();
+            return entity;
         }
     }
+
+    public class PersonUserVehicleService
+    {
+        private readonly VehicleDiaryDbContext _context;
+
+        public PersonUserVehicleService(VehicleDiaryDbContext vehicleDiaryDbContext)
+        {
+            _context = vehicleDiaryDbContext;
+        }
+
+        public async Task<IEnumerable<PersonUserVehicleModel>> GetPersonUserVehicles(string username)
+        {
+            return await _context.Set<PersonUserVehicleModel>().Where(o => o.Username == username).ToListAsync();
+        }
+    }
+
 }
