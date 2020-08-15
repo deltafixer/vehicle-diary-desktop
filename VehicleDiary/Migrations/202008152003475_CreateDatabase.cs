@@ -14,8 +14,8 @@
                         Username = c.String(nullable: false, maxLength: 30),
                         FirstName = c.String(nullable: false, maxLength: 20),
                         LastName = c.String(nullable: false, maxLength: 20),
-                        Password = c.String(nullable: false, maxLength: 50),
                         UserType = c.Int(nullable: false),
+                        Password = c.String(nullable: false),
                         Role = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Username);
@@ -93,8 +93,7 @@
                         Username = c.String(nullable: false, maxLength: 30),
                         Name = c.String(nullable: false),
                         ServiceType = c.Int(nullable: false),
-                        Password = c.String(nullable: false, maxLength: 50),
-                        UserType = c.Int(nullable: false),
+                        Password = c.String(nullable: false),
                         Role = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Username);

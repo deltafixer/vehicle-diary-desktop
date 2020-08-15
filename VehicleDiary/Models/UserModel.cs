@@ -9,9 +9,8 @@ namespace VehicleDiary.Models
         [MaxLength(30)]
         public string Username { get; set; }
         [Required]
-        [MaxLength(50)]
         public string Password { get; set; }
-        public UserType UserType { get; set; }
+        // TODO: user doesn't choose his role
         public Role Role { get; set; }
     }
 }

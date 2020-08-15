@@ -12,16 +12,22 @@
 
 
             <Label Content="First name" FontWeight="Bold"  />
-            <TextBox />
+            <TextBox x:Name="FirstName" />
 
             <Label Content="Last name" FontWeight="Bold" />
-            <TextBox />
+            <TextBox x:Name="LastName" />
+
+            <Label Content="Username" FontWeight="Bold" />
+            <TextBox x:Name="Username"/>
 
             <Label Content="Password" FontWeight="Bold" />
             <PasswordBox local:PasswordBoxAttach.BoundPassword="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
             <Label Content="Repeat password" FontWeight="Bold" />
-            <PasswordBox local:PasswordBoxAttach.BoundPassword="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <PasswordBox local:PasswordBoxAttach.BoundPassword="{Binding RepeatPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+            <Label Content="User type" FontWeight="Bold"  />
+            <ComboBox x:Name="UserTypes" SelectedItem="{Binding SelectedUserType}" />
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 20, 0, 20">
                 <Button x:Name="Back" Content="Back" Width="100" Margin="0, 0, 20, 0"/>
