@@ -6,6 +6,7 @@ namespace VehicleDiary
     public class VehicleDiaryDbContext : DbContext
     {
         public DbSet<VehicleModel> Vehicles { get; set; }
+        public DbSet<UserModel> Users { get; set; }
         public DbSet<PersonUserModel> PersonUsers { get; set; }
         public DbSet<ServiceUserModel> ServiceUsers { get; set; }
         public DbSet<SaleListingModel> SaleListings { get; set; }

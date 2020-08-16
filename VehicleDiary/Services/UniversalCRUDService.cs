@@ -55,6 +55,21 @@ namespace VehicleDiary.Services
         }
     }
 
+    public class UserService
+    {
+        private readonly VehicleDiaryDbContext _context;
+
+        public UserService(VehicleDiaryDbContext vehicleDiaryDbContext)
+        {
+            _context = vehicleDiaryDbContext;
+        }
+
+        public async Task<UserModel> CheckCredentials(string username, string password)
+        {
+            return await _context.Set<UserModel>().FindAsync(username);
+        }
+    }
+
     public class PersonUserVehicleService
     {
         private readonly VehicleDiaryDbContext _context;

@@ -11,27 +11,55 @@
                 "dbo.PersonUser",
                 c => new
                     {
-                        Username = c.String(nullable: false, maxLength: 30),
+                        Id = c.Int(nullable: false, identity: true),
                         FirstName = c.String(nullable: false, maxLength: 20),
                         LastName = c.String(nullable: false, maxLength: 20),
                         UserType = c.Int(nullable: false),
+                        User_Username = c.String(nullable: false, maxLength: 30),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.UserTable", t => t.User_Username)
+                .Index(t => t.User_Username);
+            
+            CreateTable(
+                "dbo.UserTable",
+                c => new
+                    {
+                        Username = c.String(nullable: false, maxLength: 30),
                         Password = c.String(nullable: false),
                         Role = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Username);
             
             CreateTable(
-                "dbo.PersonUserVehicle",
+                "dbo.ServiceUser",
                 c => new
                     {
-                        Username = c.String(nullable: false, maxLength: 30),
-                        Vin = c.String(nullable: false, maxLength: 128),
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false),
+                        ServiceType = c.Int(nullable: false),
+                        User_Username = c.String(nullable: false, maxLength: 30),
                     })
-                .PrimaryKey(t => new { t.Username, t.Vin })
-                .ForeignKey("dbo.PersonUser", t => t.Username, cascadeDelete: true)
-                .ForeignKey("dbo.Vehicle", t => t.Vin, cascadeDelete: true)
-                .Index(t => t.Username)
-                .Index(t => t.Vin);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.UserTable", t => t.User_Username)
+                .Index(t => t.User_Username);
+            
+            CreateTable(
+                "dbo.VehicleService",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        DateTaken = c.DateTime(nullable: false),
+                        Price = c.Single(nullable: false),
+                        ServiceDetails = c.String(),
+                        ServicedBy_Id = c.Int(nullable: false),
+                        Vehicle_Vin = c.String(nullable: false, maxLength: 128),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.ServiceUser", t => t.ServicedBy_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Vehicle", t => t.Vehicle_Vin, cascadeDelete: true)
+                .Index(t => t.ServicedBy_Id)
+                .Index(t => t.Vehicle_Vin);
             
             CreateTable(
                 "dbo.Vehicle",
@@ -57,6 +85,20 @@
                 .Index(t => t.Vehicle_Vin);
             
             CreateTable(
+                "dbo.PersonUserVehicle",
+                c => new
+                    {
+                        Username = c.String(nullable: false, maxLength: 30),
+                        Vin = c.String(nullable: false, maxLength: 128),
+                        PersonUser_Id = c.Int(),
+                    })
+                .PrimaryKey(t => new { t.Username, t.Vin })
+                .ForeignKey("dbo.PersonUser", t => t.PersonUser_Id)
+                .ForeignKey("dbo.Vehicle", t => t.Vin, cascadeDelete: true)
+                .Index(t => t.Vin)
+                .Index(t => t.PersonUser_Id);
+            
+            CreateTable(
                 "dbo.SaleListing",
                 c => new
                     {
@@ -68,35 +110,6 @@
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Vehicle", t => t.Vehicle_Vin)
                 .Index(t => t.Vehicle_Vin);
-            
-            CreateTable(
-                "dbo.VehicleService",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        DateTaken = c.DateTime(nullable: false),
-                        Price = c.Single(nullable: false),
-                        ServiceDetails = c.String(),
-                        ServicedBy_Username = c.String(nullable: false, maxLength: 30),
-                        Vehicle_Vin = c.String(nullable: false, maxLength: 128),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.ServiceUser", t => t.ServicedBy_Username, cascadeDelete: true)
-                .ForeignKey("dbo.Vehicle", t => t.Vehicle_Vin, cascadeDelete: true)
-                .Index(t => t.ServicedBy_Username)
-                .Index(t => t.Vehicle_Vin);
-            
-            CreateTable(
-                "dbo.ServiceUser",
-                c => new
-                    {
-                        Username = c.String(nullable: false, maxLength: 30),
-                        Name = c.String(nullable: false),
-                        ServiceType = c.Int(nullable: false),
-                        Password = c.String(nullable: false),
-                        Role = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.Username);
             
             CreateTable(
                 "dbo.VehicleSpecification",
@@ -124,27 +137,32 @@
         
         public override void Down()
         {
-            DropForeignKey("dbo.VehicleSpecification", "Vehicle_Vin", "dbo.Vehicle");
+            DropForeignKey("dbo.PersonUser", "User_Username", "dbo.UserTable");
+            DropForeignKey("dbo.ServiceUser", "User_Username", "dbo.UserTable");
             DropForeignKey("dbo.VehicleService", "Vehicle_Vin", "dbo.Vehicle");
-            DropForeignKey("dbo.VehicleService", "ServicedBy_Username", "dbo.ServiceUser");
+            DropForeignKey("dbo.VehicleSpecification", "Vehicle_Vin", "dbo.Vehicle");
             DropForeignKey("dbo.SaleListing", "Vehicle_Vin", "dbo.Vehicle");
             DropForeignKey("dbo.PersonUserVehicle", "Vin", "dbo.Vehicle");
+            DropForeignKey("dbo.PersonUserVehicle", "PersonUser_Id", "dbo.PersonUser");
             DropForeignKey("dbo.VehicleAccident", "Vehicle_Vin", "dbo.Vehicle");
-            DropForeignKey("dbo.PersonUserVehicle", "Username", "dbo.PersonUser");
+            DropForeignKey("dbo.VehicleService", "ServicedBy_Id", "dbo.ServiceUser");
             DropIndex("dbo.VehicleSpecification", new[] { "Vehicle_Vin" });
-            DropIndex("dbo.VehicleService", new[] { "Vehicle_Vin" });
-            DropIndex("dbo.VehicleService", new[] { "ServicedBy_Username" });
             DropIndex("dbo.SaleListing", new[] { "Vehicle_Vin" });
-            DropIndex("dbo.VehicleAccident", new[] { "Vehicle_Vin" });
+            DropIndex("dbo.PersonUserVehicle", new[] { "PersonUser_Id" });
             DropIndex("dbo.PersonUserVehicle", new[] { "Vin" });
-            DropIndex("dbo.PersonUserVehicle", new[] { "Username" });
+            DropIndex("dbo.VehicleAccident", new[] { "Vehicle_Vin" });
+            DropIndex("dbo.VehicleService", new[] { "Vehicle_Vin" });
+            DropIndex("dbo.VehicleService", new[] { "ServicedBy_Id" });
+            DropIndex("dbo.ServiceUser", new[] { "User_Username" });
+            DropIndex("dbo.PersonUser", new[] { "User_Username" });
             DropTable("dbo.VehicleSpecification");
-            DropTable("dbo.ServiceUser");
-            DropTable("dbo.VehicleService");
             DropTable("dbo.SaleListing");
+            DropTable("dbo.PersonUserVehicle");
             DropTable("dbo.VehicleAccident");
             DropTable("dbo.Vehicle");
-            DropTable("dbo.PersonUserVehicle");
+            DropTable("dbo.VehicleService");
+            DropTable("dbo.ServiceUser");
+            DropTable("dbo.UserTable");
             DropTable("dbo.PersonUser");
         }
     }

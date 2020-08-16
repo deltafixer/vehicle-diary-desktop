@@ -6,12 +6,15 @@ using static VehicleDiary.Models.Enums.UserEnums;
 namespace VehicleDiary.Models
 {
     [Table("PersonUser")]
-    public class PersonUserModel : UserModel
+    public class PersonUserModel
     {
         public PersonUserModel()
         {
             Vehicles = new HashSet<PersonUserVehicleModel>();
         }
+
+        [Key]
+        public int Id { get; set; }
 
         [Required]
         [MaxLength(20)]
@@ -25,5 +28,8 @@ namespace VehicleDiary.Models
         public UserType UserType { get; set; }
         
         public ICollection<PersonUserVehicleModel> Vehicles { get; set; }
+
+        [Required]
+        public UserModel User { get; set; }
     }
 }

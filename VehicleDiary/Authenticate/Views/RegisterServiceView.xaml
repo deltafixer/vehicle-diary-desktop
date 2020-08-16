@@ -12,7 +12,16 @@
 
             <StackPanel Width="250">
                 <Label Content="Name" FontWeight="Bold"  />
-                <TextBox />
+                <TextBox x:Name="Name" />
+
+                <Label Content="Username" FontWeight="Bold" />
+                <TextBox x:Name="Username"/>
+
+                <Label Content="Password" FontWeight="Bold" />
+                <PasswordBox local:PasswordBoxAttach.BoundPassword="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                <Label Content="Repeat password" FontWeight="Bold" />
+                <PasswordBox local:PasswordBoxAttach.BoundPassword="{Binding RepeatPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                 <Label Content="Service type" FontWeight="Bold"  />
                 <ComboBox x:Name="ServiceTypes" SelectedItem="{Binding SelectedServiceType}" />

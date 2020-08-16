@@ -30,7 +30,10 @@ namespace VehicleDiary
         {
             builder.RegisterType<RootViewModel>().SingleInstance();
             builder.RegisterType<VehicleDiaryDbContext>().InstancePerDependency();
+            builder.RegisterType<UniversalCRUDService<UserModel>>().InstancePerDependency();
+            builder.RegisterType<UserService>().InstancePerDependency();
             builder.RegisterType<UniversalCRUDService<PersonUserModel>>().InstancePerDependency();
+            builder.RegisterType<UniversalCRUDService<ServiceUserModel>>().InstancePerDependency();
 
             // AUTHENTICATE
             builder.RegisterType<AuthenticationConductorViewModel>().SingleInstance();

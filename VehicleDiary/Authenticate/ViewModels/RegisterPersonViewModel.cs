@@ -11,7 +11,7 @@ using static VehicleDiary.Models.Enums.UserEnums;
 
 namespace VehicleDiary.Authenticate.ViewModels
 {
-using BCrypt = BCrypt.Net.BCrypt;
+    using BCrypt = BCrypt.Net.BCrypt;
     public class RegisterPersonViewModel : Screen
     {
         private readonly IEventAggregator _eventAggregator;
@@ -65,7 +65,8 @@ using BCrypt = BCrypt.Net.BCrypt;
         {
             try
             {
-                await _personUserService.Create(new PersonUserModel { FirstName = FirstName, LastName = LastName, Username = Username, Password = BCrypt.HashPassword(Password), UserType = (UserType)Enum.Parse(typeof(UserType), SelectedUserType), Role = Role.USER }).ConfigureAwait(continueOnCapturedContext: true); ;
+                UserModel user = new UserModel { Username = Username, Password = BCrypt.HashPassword(Password), Role = Role.USER };
+                await _personUserService.Create(new PersonUserModel { User = user, FirstName = FirstName, LastName = LastName, UserType = (UserType)Enum.Parse(typeof(UserType), SelectedUserType) });
 
                 if (MessageBox.Show("Successfully created a person account.\nUse Your new credentials to login!", "Registration successful", MessageBoxButton.OK, MessageBoxImage.Information) == MessageBoxResult.OK)
                 {
