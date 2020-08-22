@@ -31,9 +31,11 @@ namespace VehicleDiary
             builder.RegisterType<RootViewModel>().SingleInstance();
             builder.RegisterType<VehicleDiaryDbContext>().InstancePerDependency();
             builder.RegisterType<UniversalCRUDService<UserModel>>().InstancePerDependency();
-            builder.RegisterType<UserService>().InstancePerDependency();
+            builder.RegisterType<UserService>().SingleInstance();
+            builder.RegisterType<PersonUserService>().SingleInstance();
             builder.RegisterType<UniversalCRUDService<PersonUserModel>>().InstancePerDependency();
             builder.RegisterType<UniversalCRUDService<ServiceUserModel>>().InstancePerDependency();
+            builder.RegisterType<UniversalCRUDService<VehicleModel>>().InstancePerDependency();
 
             // AUTHENTICATE
             builder.RegisterType<AuthenticationConductorViewModel>().SingleInstance();
@@ -45,7 +47,8 @@ namespace VehicleDiary
             // MAIN
             builder.RegisterType<MainConductorViewModel>().SingleInstance();
             builder.RegisterType<HeaderViewModel>().SingleInstance();
-            builder.RegisterType<HomeViewModel>().SingleInstance();
+            builder.RegisterType<ProfilePanelViewModel>().SingleInstance();
+            builder.RegisterType<VinCheckViewModel>().SingleInstance();
         }
     }
 }

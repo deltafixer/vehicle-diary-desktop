@@ -6,24 +6,25 @@ namespace VehicleDiary.Main.ViewModels
     public class MainConductorViewModel : Conductor<Screen>.Collection.OneActive, IHandle<NavigationMessage>
     {
         private readonly IEventAggregator _eventAggregator;
-        private readonly HomeViewModel _homeViewModel;
+        private readonly VinCheckViewModel _vinCheckViewModel;
+        public HeaderViewModel HeaderViewModel { get; }
+        public ProfilePanelViewModel ProfilePanelViewModel { get; }
 
-        public MainConductorViewModel(IEventAggregator eventAggregator, HeaderViewModel headerViewModel, HomeViewModel homeViewModel)
+        public MainConductorViewModel(IEventAggregator eventAggregator, HeaderViewModel headerViewModel, VinCheckViewModel homeViewModel, ProfilePanelViewModel profilePanelViewModel)
         {
             _eventAggregator = eventAggregator;
+            _vinCheckViewModel = homeViewModel;
             HeaderViewModel = headerViewModel;
-            _homeViewModel = homeViewModel;
+            ProfilePanelViewModel = profilePanelViewModel;
 
-            Items.AddRange(new Screen[] { _homeViewModel });
+            Items.AddRange(new Screen[] { _vinCheckViewModel });
         }
-
-        public HeaderViewModel HeaderViewModel { get; }
 
         protected override void OnActivate()
         {
             base.OnActivate();
             _eventAggregator.Subscribe(this);
-            ActivateItem(_homeViewModel);
+            ActivateItem(_vinCheckViewModel);
         }
 
         protected override void OnDeactivate(bool close)
@@ -36,8 +37,8 @@ namespace VehicleDiary.Main.ViewModels
         {
             switch (message.NavigateTo)
             {
-                case NavigationOptions.Home:
-                    ActivateItem(_homeViewModel);
+                case NavigationMessages.MAIN:
+                    ActivateItem(_vinCheckViewModel);
                     break;
                 default:
                     break;

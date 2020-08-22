@@ -27,6 +27,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -36,6 +37,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Autofac, Version=4.2.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
@@ -124,22 +126,28 @@
       <DependentUpon>RegisterTypeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Main\Messages\NavigationMessage.cs" />
+    <Compile Include="Main\Messages\DataMessage.cs" />
     <Compile Include="Main\ViewModels\MainConductorViewModel.cs" />
     <Compile Include="Main\ViewModels\HeaderViewModel.cs" />
-    <Compile Include="Main\ViewModels\HomeViewModel.cs" />
     <Compile Include="Authenticate\ViewModels\AuthenticationConductorViewModel.cs" />
+    <Compile Include="Main\Messages\MainNavigationMessage.cs" />
+    <Compile Include="Main\ViewModels\ProfilePanelViewModel.cs" />
+    <Compile Include="Main\ViewModels\VinCheckViewModel.cs" />
     <Compile Include="Main\Views\HeaderView.xaml.cs">
       <DependentUpon>HeaderView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Main\Views\HomeView.xaml.cs">
-      <DependentUpon>HomeView.xaml</DependentUpon>
+    <Compile Include="Main\Views\VinCheckView.xaml.cs">
+      <DependentUpon>VinCheckView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Main\Views\MainConductorView.xaml.cs">
       <DependentUpon>MainConductorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202008161034007_CreateDatabase.cs" />
-    <Compile Include="Migrations\202008161034007_CreateDatabase.designer.cs">
-      <DependentUpon>202008161034007_CreateDatabase.cs</DependentUpon>
+    <Compile Include="Main\Views\ProfilePanelView.xaml.cs">
+      <DependentUpon>ProfilePanelView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008221630500_CreateDatabase.cs" />
+    <Compile Include="Migrations\202008221630500_CreateDatabase.designer.cs">
+      <DependentUpon>202008221630500_CreateDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Enums.cs" />
@@ -152,7 +160,9 @@
     <Compile Include="Models\VehicleAccidentModel.cs" />
     <Compile Include="Authenticate\Views\PasswordBoxAttach.cs" />
     <Compile Include="Services\ICRUDService.cs" />
+    <Compile Include="Services\PersonUserService.cs" />
     <Compile Include="Services\UniversalCRUDService.cs" />
+    <Compile Include="Services\UserService.cs" />
     <Compile Include="VehicleDiaryDbContext.cs" />
     <Compile Include="Models\VehicleServiceModel.cs" />
     <Compile Include="Models\VehicleSpecificationModel.cs" />
@@ -176,8 +186,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\202008161034007_CreateDatabase.resx">
-      <DependentUpon>202008161034007_CreateDatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202008221630500_CreateDatabase.resx">
+      <DependentUpon>202008221630500_CreateDatabase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -218,11 +228,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Main\Views\HomeView.xaml">
+    <Page Include="Main\Views\VinCheckView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Main\Views\MainConductorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Main\Views\ProfilePanelView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

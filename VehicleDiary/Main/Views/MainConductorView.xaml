@@ -9,10 +9,12 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <ContentControl x:Name="HeaderViewModel" Grid.Row="0" />
-        <ContentControl x:Name="ActiveItem" Grid.Row="1" />
+        <ContentControl x:Name="ProfilePanelViewModel" Grid.Row="1" />
+        <ContentControl x:Name="ActiveItem" Grid.Row="2" />
     </Grid>
 </UserControl>

@@ -3,18 +3,21 @@ using System;
 using System.Threading.Tasks;
 using System.Windows;
 using VehicleDiary.Authenticate.Messages;
+using VehicleDiary.Main.Messages;
+using VehicleDiary.Main.ViewModels;
 using VehicleDiary.Models;
 using VehicleDiary.Services;
 
 namespace VehicleDiary.Authenticate.ViewModels
 {
+    using static VehicleDiary.Models.Enums.UserEnums;
     using BCrypt = BCrypt.Net.BCrypt;
     public class LoginViewModel : Screen
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly UserService _userService;
-        private string _username;
-        private string _password;
+        private string _username = "test";
+        private string _password = "test";
 
         public string Username
         {
@@ -35,10 +38,12 @@ namespace VehicleDiary.Authenticate.ViewModels
 
         public async Task Login()
         {
-            UserModel user = await _userService.CheckCredentials(Username, BCrypt.HashPassword(Password));
+            UserModel user = await _userService.CheckCredentials(Username);
             if (user != null && BCrypt.Verify(Password, user.Password))
             {
-                MessageBox.Show("Good credentials!");
+                _eventAggregator.PublishOnUIThread(new NavigationMessage(NavigationMessages.MAIN));
+                _userService.User = user;
+                _eventAggregator.PublishOnUIThread(new DataMessage(DataMessages.USER));
             }
             else
             {
@@ -47,7 +52,7 @@ namespace VehicleDiary.Authenticate.ViewModels
             }
         }
 
-        public void Register() => _eventAggregator.PublishOnUIThread(new AuthenticationNavigationMessage(AuthenticationNavigationOptions.RegisterType));
+        public void Register() => _eventAggregator.PublishOnUIThread(new AuthenticationNavigationMessage(AuthenticationNavigationMessages.REGISTER_TYPE));
 
         public void ClearFields() => Username = Password = string.Empty;
     }

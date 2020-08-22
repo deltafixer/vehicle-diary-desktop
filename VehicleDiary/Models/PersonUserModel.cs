@@ -8,11 +8,6 @@ namespace VehicleDiary.Models
     [Table("PersonUser")]
     public class PersonUserModel
     {
-        public PersonUserModel()
-        {
-            Vehicles = new HashSet<PersonUserVehicleModel>();
-        }
-
         [Key]
         public int Id { get; set; }
 
@@ -25,10 +20,8 @@ namespace VehicleDiary.Models
         
         public string LastName { get; set; }
         
-        public UserType UserType { get; set; }
+        public PersonType PersonType { get; set; }
         
-        public ICollection<PersonUserVehicleModel> Vehicles { get; set; }
-
         [Required]
         public UserModel User { get; set; }
     }

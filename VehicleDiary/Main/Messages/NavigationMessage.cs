@@ -2,15 +2,15 @@
 {
     public sealed class NavigationMessage
     {
-        public NavigationMessage(NavigationOptions navigationOption)
+        public NavigationMessage(NavigationMessages navigationOption)
         {
             NavigateTo = navigationOption;
         }
-        public NavigationOptions NavigateTo { get; }
+        public NavigationMessages NavigateTo { get; }
     }
-    public enum NavigationOptions
+    public enum NavigationMessages
     {
-        Home,
-        Authentication
+        MAIN,
+        AUTHENTICATION
     }
 }

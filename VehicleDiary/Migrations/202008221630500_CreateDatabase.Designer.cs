@@ -13,7 +13,7 @@ namespace VehicleDiary.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202008161034007_CreateDatabase"; }
+            get { return "202008221630500_CreateDatabase"; }
         }
         
         string IMigrationMetadata.Source

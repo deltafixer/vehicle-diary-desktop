@@ -18,8 +18,7 @@ namespace VehicleDiary.Models
         // TODO: user doesn't choose his role
         public Role Role { get; set; }
 
-        public PersonUserModel PersonUser { get; set; }
-
-        public ServiceUserModel ServiceUser { get; set; }
+        [Required]
+        public UserType UserType { get; set; }
     }
 }

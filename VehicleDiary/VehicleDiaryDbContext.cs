@@ -17,7 +17,7 @@ namespace VehicleDiary
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<PersonUserVehicleModel>().HasKey(obj => new { obj.Username, obj.Vin});
+            modelBuilder.Entity<PersonUserVehicleModel>().HasKey(obj => new { obj.Id, obj.Vin});
         }
     }
 }

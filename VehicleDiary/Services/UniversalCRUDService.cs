@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
-using System.Linq;
 using System.Threading.Tasks;
-using VehicleDiary.Models;
 
 namespace VehicleDiary.Services
 {
@@ -55,34 +53,6 @@ namespace VehicleDiary.Services
         }
     }
 
-    public class UserService
-    {
-        private readonly VehicleDiaryDbContext _context;
 
-        public UserService(VehicleDiaryDbContext vehicleDiaryDbContext)
-        {
-            _context = vehicleDiaryDbContext;
-        }
-
-        public async Task<UserModel> CheckCredentials(string username, string password)
-        {
-            return await _context.Set<UserModel>().FindAsync(username);
-        }
-    }
-
-    public class PersonUserVehicleService
-    {
-        private readonly VehicleDiaryDbContext _context;
-
-        public PersonUserVehicleService(VehicleDiaryDbContext vehicleDiaryDbContext)
-        {
-            _context = vehicleDiaryDbContext;
-        }
-
-        public async Task<IEnumerable<PersonUserVehicleModel>> GetPersonUserVehicles(string username)
-        {
-            return await _context.Set<PersonUserVehicleModel>().Where(o => o.Username == username).ToListAsync();
-        }
-    }
 
 }

@@ -37,10 +37,10 @@ namespace VehicleDiary.ViewModels
         {
             switch (message.NavigateTo)
             {
-                case NavigationOptions.Home:
+                case NavigationMessages.MAIN:
                     ActivateItem(_mainConductorViewModel);
                     break;
-                case NavigationOptions.Authentication:
+                case NavigationMessages.AUTHENTICATION:
                     ActivateItem(_authenticationConductorViewModel);
                     break;
                 default:

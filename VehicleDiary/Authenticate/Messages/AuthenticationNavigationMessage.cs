@@ -2,19 +2,19 @@
 {
     public sealed class AuthenticationNavigationMessage
     {
-        public AuthenticationNavigationMessage(AuthenticationNavigationOptions navigationOption)
+        public AuthenticationNavigationMessage(AuthenticationNavigationMessages navigationOption)
         {
             NavigateTo = navigationOption;
         }
 
-        public AuthenticationNavigationOptions NavigateTo { get; }
+        public AuthenticationNavigationMessages NavigateTo { get; }
     }
 
-    public enum AuthenticationNavigationOptions
+    public enum AuthenticationNavigationMessages
     {
-        Login,
-        RegisterType,
-        RegisterPerson,
-        RegisterService
+        LOGIN,
+        REGISTER_TYPE,
+        REGISTER_PERSON,
+        REGISTER_SERVICE
     }
 }

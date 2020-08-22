@@ -54,18 +54,18 @@ namespace VehicleDiary.Authenticate.ViewModels
 
         public bool CanRegister => (Name?.Length > 0 && Username?.Length > 0 && Password?.Length > 0 && Password == RepeatPassword);
 
-        public void Back() => _eventAggregator.PublishOnUIThread(new AuthenticationNavigationMessage(AuthenticationNavigationOptions.RegisterType));
+        public void Back() => _eventAggregator.PublishOnUIThread(new AuthenticationNavigationMessage(AuthenticationNavigationMessages.REGISTER_TYPE));
         public async Task Register()
         {
             try
             {
-                UserModel user = new UserModel { Username = Username, Password = BCrypt.HashPassword(Password), Role = Role.USER };
+                UserModel user = new UserModel { Username = Username, Password = BCrypt.HashPassword(Password), Role = Role.USER, UserType = UserType.SERVICE};
                 await _serviceUserService.Create(new ServiceUserModel { User = user, Name = Name, ServiceType = (ServiceType)Enum.Parse(typeof(ServiceType), SelectedServiceType) });
 
                 if (MessageBox.Show("Successfully created a person account.\nUse Your new credentials to login!", "Registration successful", MessageBoxButton.OK, MessageBoxImage.Information) == MessageBoxResult.OK)
                 {
                     ClearFields();
-                    _eventAggregator.PublishOnUIThread(new AuthenticationNavigationMessage(AuthenticationNavigationOptions.Login));
+                    _eventAggregator.PublishOnUIThread(new AuthenticationNavigationMessage(AuthenticationNavigationMessages.LOGIN));
                 }
             }
             catch (Exception)

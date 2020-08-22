@@ -21,7 +21,7 @@ namespace VehicleDiary.Authenticate.ViewModels
         private string _username;
         private string _password;
         private string _repeatPassword;
-        private string _selectedUserType = UserType.PERSON.ToString();
+        private string _selectedPersonType = PersonType.INDIVIDUAL.ToString();
 
         public RegisterPersonViewModel(IEventAggregator eventAggregator, UniversalCRUDService<PersonUserModel> personUserService)
         {
@@ -50,28 +50,28 @@ namespace VehicleDiary.Authenticate.ViewModels
             get => _repeatPassword; set { _repeatPassword = value; NotifyOfPropertyChange(() => RepeatPassword); NotifyOfPropertyChange(() => CanRegister); }
         }
 
-        public List<string> UserTypes
+        public List<string> PersonTypes
         {
-            get => Enum.GetValues(typeof(UserType)).Cast<UserType>().Select(v => v.ToString()).ToList();
+            get => Enum.GetValues(typeof(PersonType)).Cast<PersonType>().Select(v => v.ToString()).ToList();
         }
 
-        public string SelectedUserType { get => _selectedUserType; set => Set(ref _selectedUserType, value); }
+        public string SelectedPersonType { get => _selectedPersonType; set => Set(ref _selectedPersonType, value); }
 
         public bool CanRegister => (FirstName?.Length > 0 && LastName?.Length > 0 && Username?.Length > 0 && Password?.Length > 0 && Password == RepeatPassword);
 
-        public void Back() => _eventAggregator.PublishOnUIThread(new AuthenticationNavigationMessage(AuthenticationNavigationOptions.RegisterType));
+        public void Back() => _eventAggregator.PublishOnUIThread(new AuthenticationNavigationMessage(AuthenticationNavigationMessages.REGISTER_TYPE));
 
         public async Task Register()
         {
             try
             {
-                UserModel user = new UserModel { Username = Username, Password = BCrypt.HashPassword(Password), Role = Role.USER };
-                await _personUserService.Create(new PersonUserModel { User = user, FirstName = FirstName, LastName = LastName, UserType = (UserType)Enum.Parse(typeof(UserType), SelectedUserType) });
+                UserModel user = new UserModel { Username = Username, Password = BCrypt.HashPassword(Password), Role = Role.USER, UserType = UserType.PERSON };
+                await _personUserService.Create(new PersonUserModel { User = user, FirstName = FirstName, LastName = LastName, PersonType = (PersonType)Enum.Parse(typeof(PersonType), SelectedPersonType) });
 
                 if (MessageBox.Show("Successfully created a person account.\nUse Your new credentials to login!", "Registration successful", MessageBoxButton.OK, MessageBoxImage.Information) == MessageBoxResult.OK)
                 {
                     ClearFields();
-                    _eventAggregator.PublishOnUIThread(new AuthenticationNavigationMessage(AuthenticationNavigationOptions.Login));
+                    _eventAggregator.PublishOnUIThread(new AuthenticationNavigationMessage(AuthenticationNavigationMessages.LOGIN));
                 }
             }
             catch (Exception)

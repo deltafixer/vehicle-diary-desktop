@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace VehicleDiary.Main.Views
 {
     /// <summary>
-    /// Interaction logic for HomeView.xaml
+    /// Interaction logic for ProfilePanelView.xaml
     /// </summary>
-    public partial class HomeView : UserControl
+    public partial class ProfilePanelView : UserControl
     {
-        public HomeView()
+        public ProfilePanelView()
         {
             InitializeComponent();
         }

@@ -8,17 +8,11 @@ namespace VehicleDiary.Models
     [Table("Vehicle")]
     public class VehicleModel
     {
-        public VehicleModel()
-        {
-            Owners = new HashSet<PersonUserVehicleModel>();
-        }
-
         [Key]
         public string Vin { get; set; }
         public Make Make { get; set; }
         public Model Model { get; set; }
         public VehicleSpecificationModel VehicleSpecification { get; set; }
-        public ICollection<PersonUserVehicleModel> Owners { get; set; }
         public ICollection<VehicleServiceModel> Services { get; set; }
         public ICollection<VehicleAccidentModel> Accidents { get; set; }
         public SaleListingModel SaleListing { get; set; }

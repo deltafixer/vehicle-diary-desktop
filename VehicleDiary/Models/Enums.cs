@@ -11,8 +11,14 @@
 
             public enum UserType
             {
-                PERSON, SERVICE, TAXI, DRIVING_SCHOOL, POLICE
+                PERSON, SERVICE
             }
+
+            public enum PersonType
+            {
+                INDIVIDUAL, TAXI, DRIVING_SCHOOL, POLICE
+            }
+
 
             public enum ServiceType
             {

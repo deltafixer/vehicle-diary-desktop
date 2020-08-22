@@ -26,8 +26,8 @@ namespace VehicleDiary.Authenticate.ViewModels
             set => Set(ref _serviceTypeIsChecked, value);
         }
 
-        public void Continue() => _eventAggregator.PublishOnUIThread(new AuthenticationNavigationMessage(PersonTypeIsChecked ? AuthenticationNavigationOptions.RegisterPerson : AuthenticationNavigationOptions.RegisterService));
+        public void Continue() => _eventAggregator.PublishOnUIThread(new AuthenticationNavigationMessage(PersonTypeIsChecked ? AuthenticationNavigationMessages.REGISTER_PERSON : AuthenticationNavigationMessages.REGISTER_SERVICE));
 
-        public void Back() => _eventAggregator.PublishOnUIThread(new AuthenticationNavigationMessage(AuthenticationNavigationOptions.Login));
+        public void Back() => _eventAggregator.PublishOnUIThread(new AuthenticationNavigationMessage(AuthenticationNavigationMessages.LOGIN));
     }
 }

@@ -39,16 +39,16 @@ namespace VehicleDiary.Authenticate.ViewModels
         {
             switch (message.NavigateTo)
             {
-                case AuthenticationNavigationOptions.Login:
+                case AuthenticationNavigationMessages.LOGIN:
                     ActivateItem(_loginViewModel);
                     break;
-                case AuthenticationNavigationOptions.RegisterType:
+                case AuthenticationNavigationMessages.REGISTER_TYPE:
                     ActivateItem(_registerTypeViewModel);
                     break;
-                case AuthenticationNavigationOptions.RegisterPerson:
+                case AuthenticationNavigationMessages.REGISTER_PERSON:
                     ActivateItem(_registerPersonViewModel);
                     break;
-                case AuthenticationNavigationOptions.RegisterService:
+                case AuthenticationNavigationMessages.REGISTER_SERVICE:
                     ActivateItem(_registerServiceViewModel);
                     break;
                 default:
