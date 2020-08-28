@@ -75,6 +75,7 @@
                         Id = c.Int(nullable: false, identity: true),
                         Price = c.Single(nullable: false),
                         DateAdded = c.DateTime(nullable: false),
+                        Condition = c.Int(nullable: false),
                         Vehicle_Vin = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
@@ -116,9 +117,7 @@
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Price = c.Single(nullable: false),
-                        Condition = c.Int(nullable: false),
-                        MakeYear = c.DateTime(nullable: false),
+                        MakeDate = c.DateTime(nullable: false),
                         BodyStyle = c.Int(nullable: false),
                         DriveType = c.Int(nullable: false),
                         Kilometrage = c.Single(nullable: false),

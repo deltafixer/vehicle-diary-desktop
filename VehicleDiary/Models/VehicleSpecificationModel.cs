@@ -9,9 +9,7 @@ namespace VehicleDiary.Models
     public class VehicleSpecificationModel
     {
         public int Id { get; set; }
-        public float Price { get; set; }
-        public Condition Condition { get; set; }
-        public DateTime MakeYear { get; set; }
+        public DateTime MakeDate { get; set; }
         public BodyStyle BodyStyle { get; set; }
         public DriveType DriveType { get; set; }
         public float Kilometrage { get; set; }

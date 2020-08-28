@@ -3,17 +3,19 @@ using VehicleDiary.Main.Messages;
 
 namespace VehicleDiary.Main.ViewModels
 {
-    public class MainConductorViewModel : Conductor<Screen>.Collection.OneActive, IHandle<NavigationMessage>
+    public class MainConductorViewModel : Conductor<Screen>.Collection.OneActive, IHandle<MainNavigationMessage>
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly VinCheckViewModel _vinCheckViewModel;
+        private readonly MyVehiclesViewModel _myVehiclesViewModel;
         public HeaderViewModel HeaderViewModel { get; }
         public ProfilePanelViewModel ProfilePanelViewModel { get; }
 
-        public MainConductorViewModel(IEventAggregator eventAggregator, HeaderViewModel headerViewModel, VinCheckViewModel homeViewModel, ProfilePanelViewModel profilePanelViewModel)
+        public MainConductorViewModel(IEventAggregator eventAggregator, HeaderViewModel headerViewModel, VinCheckViewModel vinCheckViewModel, MyVehiclesViewModel myVehiclesViewModel, ProfilePanelViewModel profilePanelViewModel)
         {
             _eventAggregator = eventAggregator;
-            _vinCheckViewModel = homeViewModel;
+            _vinCheckViewModel = vinCheckViewModel;
+            _myVehiclesViewModel = myVehiclesViewModel;
             HeaderViewModel = headerViewModel;
             ProfilePanelViewModel = profilePanelViewModel;
 
@@ -33,12 +35,15 @@ namespace VehicleDiary.Main.ViewModels
             _eventAggregator.Unsubscribe(this);
         }
 
-        public void Handle(NavigationMessage message)
+        public void Handle(MainNavigationMessage message)
         {
             switch (message.NavigateTo)
             {
-                case NavigationMessages.MAIN:
+                case MainNavigationMessages.CHECK_VIN:
                     ActivateItem(_vinCheckViewModel);
+                    break;
+                case MainNavigationMessages.MY_VEHICLES:
+                    ActivateItem(_myVehiclesViewModel);
                     break;
                 default:
                     break;

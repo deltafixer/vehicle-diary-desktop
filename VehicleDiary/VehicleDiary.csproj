@@ -131,10 +131,14 @@
     <Compile Include="Main\ViewModels\HeaderViewModel.cs" />
     <Compile Include="Authenticate\ViewModels\AuthenticationConductorViewModel.cs" />
     <Compile Include="Main\Messages\MainNavigationMessage.cs" />
+    <Compile Include="Main\ViewModels\MyVehiclesViewModel.cs" />
     <Compile Include="Main\ViewModels\ProfilePanelViewModel.cs" />
     <Compile Include="Main\ViewModels\VinCheckViewModel.cs" />
     <Compile Include="Main\Views\HeaderView.xaml.cs">
       <DependentUpon>HeaderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Main\Views\MyVehiclesView.xaml.cs">
+      <DependentUpon>MyVehiclesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Main\Views\VinCheckView.xaml.cs">
       <DependentUpon>VinCheckView.xaml</DependentUpon>
@@ -145,9 +149,9 @@
     <Compile Include="Main\Views\ProfilePanelView.xaml.cs">
       <DependentUpon>ProfilePanelView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202008221630500_CreateDatabase.cs" />
-    <Compile Include="Migrations\202008221630500_CreateDatabase.designer.cs">
-      <DependentUpon>202008221630500_CreateDatabase.cs</DependentUpon>
+    <Compile Include="Migrations\202008271452415_CreateDatabase.cs" />
+    <Compile Include="Migrations\202008271452415_CreateDatabase.designer.cs">
+      <DependentUpon>202008271452415_CreateDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Enums.cs" />
@@ -163,6 +167,7 @@
     <Compile Include="Services\PersonUserService.cs" />
     <Compile Include="Services\UniversalCRUDService.cs" />
     <Compile Include="Services\UserService.cs" />
+    <Compile Include="Utilities\CommandHandler.cs" />
     <Compile Include="VehicleDiaryDbContext.cs" />
     <Compile Include="Models\VehicleServiceModel.cs" />
     <Compile Include="Models\VehicleSpecificationModel.cs" />
@@ -186,8 +191,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\202008221630500_CreateDatabase.resx">
-      <DependentUpon>202008221630500_CreateDatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202008271452415_CreateDatabase.resx">
+      <DependentUpon>202008271452415_CreateDatabase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -225,6 +230,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Main\Views\HeaderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Main\Views\MyVehiclesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

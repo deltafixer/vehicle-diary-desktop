@@ -1,7 +1,10 @@
 ﻿using Caliburn.Micro;
+using System;
+using System.Windows.Input;
 using VehicleDiary.Main.Messages;
 using VehicleDiary.Models;
 using VehicleDiary.Services;
+using VehicleDiary.Utilities;
 using static VehicleDiary.Models.Enums.UserEnums;
 
 namespace VehicleDiary.Main.ViewModels
@@ -9,6 +12,7 @@ namespace VehicleDiary.Main.ViewModels
     public class CustomMenuItem
     {
         public string Name { get; set; }
+        public ICommand OnClick { get; set; }
     };
     public class HeaderViewModel : IHandle<DataMessage>
     {
@@ -39,9 +43,9 @@ namespace VehicleDiary.Main.ViewModels
                             // COMMENT: Profile and Logout buttons are defined in the View. They are 'static' elements visible in all cases.
                             MenuItems.AddRange(new BindableCollection<CustomMenuItem>
                             {
-                                new CustomMenuItem { Name = "Check VIN" },
-                                new CustomMenuItem { Name = "My vehicles" },
-                                new CustomMenuItem { Name = "Market" },
+                                new CustomMenuItem { Name = "Check VIN", OnClick = GoToCheckVin},
+                                new CustomMenuItem { Name = "My vehicles", OnClick = GoToMyVehicles},
+                                new CustomMenuItem { Name = "Market", OnClick = GoToMarket },
                             });
                             PersonUserModel personUser = await _personUserService.Get(_userService.User.Username);
                             _personUserService.PersonUser = personUser;
@@ -65,6 +69,44 @@ namespace VehicleDiary.Main.ViewModels
             }
         }
 
+        public ICommand GoToCheckVin
+        {
+            get
+            {
+                return new CommandHandler(() => ActionGoToCheckVin());
+            }
+        }
+        public ICommand GoToMyVehicles
+        {
+            get
+            {
+                return new CommandHandler(() => ActionGoToMyVehicles());
+            }
+        }
+        public ICommand GoToMarket
+        {
+            get
+            {
+                return new CommandHandler(() => ActionGoToMarket());
+            }
+        }
+        public void ActionGoToCheckVin()
+        {
+            _eventAggregator.PublishOnUIThread(new MainNavigationMessage(MainNavigationMessages.CHECK_VIN));
+        }
+
+        public void ActionGoToMyVehicles()
+        {
+            _eventAggregator.PublishOnUIThread(new MainNavigationMessage(MainNavigationMessages.MY_VEHICLES));
+        }
+
+        public void ActionGoToMarket()
+        {
+            _eventAggregator.PublishOnUIThread(new MainNavigationMessage(MainNavigationMessages.MARKET));
+        }
+
+        public void GoToProfile() => _eventAggregator.PublishOnUIThread(new MainNavigationMessage(MainNavigationMessages.PROFILE));
+
         public void Logout()
         {
             _userService.User = null;
@@ -73,7 +115,5 @@ namespace VehicleDiary.Main.ViewModels
             _eventAggregator.PublishOnUIThread(new DataMessage(DataMessages.CLEAR_ALL));
             _eventAggregator.PublishOnUIThread(new NavigationMessage(NavigationMessages.AUTHENTICATION));
         }
-
-        public void Profile() => _eventAggregator.PublishOnUIThread(new MainNavigationMessage(MainNavigationMessages.PROFILE));
     }
 }

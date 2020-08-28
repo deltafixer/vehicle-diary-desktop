@@ -10,7 +10,6 @@
         <StackPanel Orientation="Vertical" VerticalAlignment="Center" Width="250">
             <TextBlock Text="Register" HorizontalAlignment="Center" FontSize="36" />
 
-
             <Label Content="First name" FontWeight="Bold"  />
             <TextBox x:Name="FirstName" />
 

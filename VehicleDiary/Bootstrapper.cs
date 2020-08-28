@@ -36,7 +36,9 @@ namespace VehicleDiary
             builder.RegisterType<UniversalCRUDService<PersonUserModel>>().InstancePerDependency();
             builder.RegisterType<UniversalCRUDService<ServiceUserModel>>().InstancePerDependency();
             builder.RegisterType<UniversalCRUDService<VehicleModel>>().InstancePerDependency();
-
+            builder.RegisterType<UniversalCRUDService<PersonUserVehicleModel>>().InstancePerDependency();
+            builder.RegisterType<UniversalCRUDService<VehicleSpecificationModel>>().InstancePerDependency();
+            
             // AUTHENTICATE
             builder.RegisterType<AuthenticationConductorViewModel>().SingleInstance();
             builder.RegisterType<LoginViewModel>().SingleInstance();
@@ -49,6 +51,7 @@ namespace VehicleDiary
             builder.RegisterType<HeaderViewModel>().SingleInstance();
             builder.RegisterType<ProfilePanelViewModel>().SingleInstance();
             builder.RegisterType<VinCheckViewModel>().SingleInstance();
+            builder.RegisterType<MyVehiclesViewModel>().SingleInstance();
         }
     }
 }

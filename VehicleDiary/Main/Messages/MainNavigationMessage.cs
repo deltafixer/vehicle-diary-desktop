@@ -10,6 +10,10 @@
     }
     public enum MainNavigationMessages
     {
+        CHECK_VIN,
+        MY_VEHICLES,
+        MARKET,
+        REPORT_ACCIDENT,
         PROFILE,
     }
 }
