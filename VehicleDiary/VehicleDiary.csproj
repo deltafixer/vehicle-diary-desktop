@@ -133,12 +133,16 @@
     <Compile Include="Main\Messages\MainNavigationMessage.cs" />
     <Compile Include="Main\ViewModels\MyVehiclesViewModel.cs" />
     <Compile Include="Main\ViewModels\ProfilePanelViewModel.cs" />
+    <Compile Include="Main\ViewModels\VehicleViewModel.cs" />
     <Compile Include="Main\ViewModels\VinCheckViewModel.cs" />
     <Compile Include="Main\Views\HeaderView.xaml.cs">
       <DependentUpon>HeaderView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Main\Views\MyVehiclesView.xaml.cs">
       <DependentUpon>MyVehiclesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Main\Views\VehicleView.xaml.cs">
+      <DependentUpon>VehicleView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Main\Views\VinCheckView.xaml.cs">
       <DependentUpon>VinCheckView.xaml</DependentUpon>
@@ -234,6 +238,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Main\Views\MyVehiclesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Main\Views\VehicleView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

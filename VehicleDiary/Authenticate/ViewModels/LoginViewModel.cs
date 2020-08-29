@@ -41,8 +41,8 @@ namespace VehicleDiary.Authenticate.ViewModels
             UserModel user = await _userService.CheckCredentials(Username);
             if (user != null && BCrypt.Verify(Password, user.Password))
             {
-                _eventAggregator.PublishOnUIThread(new NavigationMessage(NavigationMessages.MAIN));
                 _userService.User = user;
+                _eventAggregator.PublishOnUIThread(new NavigationMessage(NavigationMessages.MAIN));
                 _eventAggregator.PublishOnUIThread(new DataMessage(DataMessages.USER));
             }
             else

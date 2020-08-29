@@ -14,9 +14,9 @@ namespace VehicleDiary.Main.ViewModels
     public class MyVehiclesViewModel : Screen, IHandle<DataMessage>
     {
         private readonly IEventAggregator _eventAggregator;
-        private UniversalCRUDService<VehicleSpecificationModel> _vehicleSpecificationService;
-        private UniversalCRUDService<PersonUserVehicleModel> _personUserVehicleService;
-        private UniversalCRUDService<VehicleModel> _vehicleService;
+        private readonly UniversalCRUDService<VehicleSpecificationModel> _vehicleSpecificationCrudService;
+        private readonly UniversalCRUDService<PersonUserVehicleModel> _personUserVehicleCrudService;
+        private readonly UniversalCRUDService<VehicleModel> _vehicleCrudService;
         private readonly UserService _userService;
         private readonly PersonUserService _personUserService;
         private string _selectedMake = Make.AUDI.ToString();
@@ -44,18 +44,19 @@ namespace VehicleDiary.Main.ViewModels
         public string EnginePowerKW { get => _enginePowerKW; set { _enginePowerKW = value; NotifyOfPropertyChange(() => EnginePowerKW); NotifyOfPropertyChange(() => CanAddVehicle); } }
         public string SelectedEngineEmissionType { get => _selectedEngineEmissionType; set => Set(ref _selectedEngineEmissionType, value); }
         public string SelectedGearboxType { get => _selectedGearboxType; set => Set(ref _selectedGearboxType, value); }
-        public BindableCollection<VehicleModel> Vehicles { get; set; }
+        public BindableCollection<VehicleViewModel> Vehicles { get; set; }
 
-        public MyVehiclesViewModel(IEventAggregator eventAggregator, UniversalCRUDService<VehicleSpecificationModel> vehicleSpecificationService, UniversalCRUDService<PersonUserVehicleModel> personUserVehicleService, PersonUserService personUserService, UniversalCRUDService<VehicleModel> vehicleService, UserService userService)
+        public MyVehiclesViewModel(IEventAggregator eventAggregator, UniversalCRUDService<VehicleSpecificationModel> vehicleSpecificationCrudService, UniversalCRUDService<PersonUserVehicleModel> personUserVehicleCrudService, UniversalCRUDService<VehicleModel> vehicleCrudService, PersonUserService personUserService, UniversalCRUDService<VehicleModel> vehicleService, UserService userService)
         {
             _eventAggregator = eventAggregator;
             _eventAggregator.Subscribe(this);
-            _vehicleSpecificationService = vehicleSpecificationService;
-            _personUserVehicleService = personUserVehicleService;
-            _vehicleService = vehicleService;
+            _vehicleSpecificationCrudService = vehicleSpecificationCrudService;
+            _personUserVehicleCrudService = personUserVehicleCrudService;
+            _vehicleCrudService = vehicleCrudService;
+            _vehicleCrudService = vehicleService;
             _personUserService = personUserService;
             _userService = userService;
-            Vehicles = new BindableCollection<VehicleModel>();
+            Vehicles = new BindableCollection<VehicleViewModel>();
         }
 
         public List<string> Makes
@@ -99,10 +100,11 @@ namespace VehicleDiary.Main.ViewModels
             try
             {
                 VehicleModel vehicle = new VehicleModel { Make = (Make)Enum.Parse(typeof(Make), SelectedMake), Model = (Model)Enum.Parse(typeof(Model), SelectedModel), Vin = Vin };
-                await _vehicleSpecificationService.Create(new VehicleSpecificationModel { MakeDate = MakeDate, BodyStyle = (BodyStyle)Enum.Parse(typeof(BodyStyle), SelectedBodyStyle), DriveType = (DriveType)Enum.Parse(typeof(DriveType), SelectedDriveType), Kilometrage = float.Parse(Kilometrage), FuelType = (FuelType)Enum.Parse(typeof(FuelType), SelectedFuelType), EngineVolume = int.Parse(EngineVolume), EnginePowerKW = int.Parse(EnginePowerKW), EngineEmissionType = (EngineEmissionType)Enum.Parse(typeof(EngineEmissionType), SelectedEngineEmissionType), GearboxType = (GearboxType)Enum.Parse(typeof(GearboxType), SelectedGearboxType), Vehicle = vehicle });
+                VehicleSpecificationModel specification = await _vehicleSpecificationCrudService.Create(new VehicleSpecificationModel { MakeDate = MakeDate, BodyStyle = (BodyStyle)Enum.Parse(typeof(BodyStyle), SelectedBodyStyle), DriveType = (DriveType)Enum.Parse(typeof(DriveType), SelectedDriveType), Kilometrage = float.Parse(Kilometrage), FuelType = (FuelType)Enum.Parse(typeof(FuelType), SelectedFuelType), EngineVolume = int.Parse(EngineVolume), EnginePowerKW = int.Parse(EnginePowerKW), EngineEmissionType = (EngineEmissionType)Enum.Parse(typeof(EngineEmissionType), SelectedEngineEmissionType), GearboxType = (GearboxType)Enum.Parse(typeof(GearboxType), SelectedGearboxType), Vehicle = vehicle });
+                vehicle.VehicleSpecification = specification;
+                await _personUserVehicleCrudService.Create(new PersonUserVehicleModel { Vin = vehicle.Vin, Id = _personUserService.PersonUser.Id });
 
-                await _personUserVehicleService.Create(new PersonUserVehicleModel { Vin = vehicle.Vin, Id = _personUserService.PersonUser.Id });
-
+                Vehicles.Add(CreateVehicleViewModel(vehicle));
                 if (MessageBox.Show("Successfully added a vehicle with VIN: " + $"{Vin}", "Success", MessageBoxButton.OK, MessageBoxImage.Information) == MessageBoxResult.OK)
                 {
                     ClearFields();
@@ -146,12 +148,12 @@ namespace VehicleDiary.Main.ViewModels
                             {
                                 vins.Add(personUserVehicleReference.Vin);
                             }
-                            IEnumerable<VehicleModel> personUserVehicles  = await _personUserService.GetPersonUserVehicles(vins);
-                            foreach(VehicleModel vehicle in personUserVehicles)
+                            IEnumerable<VehicleModel> personUserVehicles = await _personUserService.GetPersonUserVehicles(vins);
+                            foreach (VehicleModel vehicle in personUserVehicles)
                             {
                                 _personUserService.Vehicles.Add(vehicle);
                             }
-                            Vehicles = new BindableCollection<VehicleModel>(_personUserService.Vehicles);
+                            Vehicles.AddRange(_personUserService.Vehicles.Select(vehicle => CreateVehicleViewModel(vehicle)));
                             break;
                         default:
                             break;
@@ -160,6 +162,32 @@ namespace VehicleDiary.Main.ViewModels
                 default:
                     break;
             }
+        }
+
+        private VehicleViewModel CreateVehicleViewModel(VehicleModel vehicleModel)
+        {
+            VehicleViewModel vehicleViewModel = new VehicleViewModel(vehicleModel, _vehicleCrudService, _vehicleSpecificationCrudService);
+            vehicleViewModel.VehicleRemoved += OnVehicleRemoved;
+            return vehicleViewModel;
+        }
+
+        protected override void OnDeactivate(bool close)
+        {
+            base.OnDeactivate(close);
+            foreach (VehicleViewModel vehicle in Vehicles)
+            {
+                vehicle.VehicleRemoved -= OnVehicleRemoved;
+            }
+            Vehicles.Clear();
+        }
+
+        private void OnVehicleRemoved(object sender, EventArgs e)
+        {
+            VehicleViewModel vehicleToRemove = (VehicleViewModel)sender;
+            string removedVin = vehicleToRemove.Vin;
+            vehicleToRemove.VehicleRemoved -= OnVehicleRemoved;
+            Vehicles.Remove(vehicleToRemove);
+            MessageBox.Show("Successfully removed the vehicle with VIN: " + $"{removedVin}", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

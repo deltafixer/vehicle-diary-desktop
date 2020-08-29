@@ -31,33 +31,6 @@
                             </ScrollViewer>
                         </ControlTemplate>
                     </ItemsControl.Template>
-
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Border Margin="20 20 0 0" BorderThickness="0.5" BorderBrush="DimGray" CornerRadius="5" Padding="20 10">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-
-                                    <Label Content="Make" FontWeight="Bold" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
-                                    <TextBlock Text="{Binding Make}" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="0"/>
-
-                                    <Label Content="Model" FontWeight="Bold" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1"/>
-                                    <TextBlock Text="{Binding Model}" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1"/>
-
-                                    <Label Content="VIN" FontWeight="Bold" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="2"/>
-                                    <TextBlock Text="{Binding Vin}" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="2"/>
-                                </Grid>
-                            </Border>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </Grid>
 
