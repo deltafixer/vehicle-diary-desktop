@@ -138,7 +138,7 @@ namespace VehicleDiary.Main.ViewModels
         {
             switch (dataMessage.Message)
             {
-                case DataMessages.USER:
+                case DataMessages.HEADER_LOADED:
                     switch (_userService.User.UserType)
                     {
                         case UserType.PERSON:
@@ -159,6 +159,10 @@ namespace VehicleDiary.Main.ViewModels
                             break;
                     }
                     break;
+                case DataMessages.CLEAR_ALL:
+                    UnsubscribeAll();
+                    Vehicles.Clear();
+                    break;
                 default:
                     break;
             }
@@ -174,11 +178,26 @@ namespace VehicleDiary.Main.ViewModels
         protected override void OnDeactivate(bool close)
         {
             base.OnDeactivate(close);
+            // COMMENT: not sure in what moment to unsubscribe and clear data, this happens everytime a screen is deactivated, not destroyed
+            //foreach (VehicleViewModel vehicle in Vehicles)
+            //{
+            //    vehicle.VehicleRemoved -= OnVehicleRemoved;
+            //}
+            //Vehicles.Clear();
+        }
+
+        // COMMENT: not sure about this, seems to work
+        ~MyVehiclesViewModel()
+        {
+            UnsubscribeAll();
+        }
+
+        private void UnsubscribeAll()
+        {
             foreach (VehicleViewModel vehicle in Vehicles)
             {
                 vehicle.VehicleRemoved -= OnVehicleRemoved;
             }
-            Vehicles.Clear();
         }
 
         private void OnVehicleRemoved(object sender, EventArgs e)

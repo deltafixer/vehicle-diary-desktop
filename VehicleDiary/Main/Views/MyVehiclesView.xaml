@@ -50,68 +50,68 @@
                         </Style>
                     </UniformGrid.Resources>
 
-                    <Label Content="Make" FontWeight="Bold" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
+                    <Label Content="Make" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
                     <Border Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
                         <ComboBox x:Name="Makes" SelectedItem="{Binding SelectedMake}" />
                     </Border>
 
-                    <Label Content="Model" FontWeight="Bold" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" />
+                    <Label Content="Model" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" />
                     <Border Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
                         <ComboBox x:Name="Models" SelectedItem="{Binding SelectedModel}" />
                     </Border>
 
-                    <Label Content="VIN" FontWeight="Bold" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
+                    <Label Content="VIN" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
                     <Border Grid.Row="2" Grid.Column="1" VerticalAlignment="Center">
-                        <TextBox x:Name="Vin" PreviewTextInput="NumberValidationTextBox" Width="{Binding Path=ActualWidth, ElementName=Models}" />
+                        <TextBox x:Name="Vin" MaxLength="17" Width="{Binding Path=ActualWidth, ElementName=Models}" />
                     </Border>
 
-                    <Label Content="MakeDate" FontWeight="Bold" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"/>
+                    <Label Content="Make date" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"/>
                     <Border Grid.Row="3" Grid.Column="1" VerticalAlignment="Center">
                         <DatePicker x:Name="MakeDate"/>
                     </Border>
 
-                    <Label Content="BodyStyle" FontWeight="Bold" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center"/>
+                    <Label Content="Body style" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center"/>
                     <Border Grid.Row="4" Grid.Column="1" VerticalAlignment="Center">
                         <ComboBox x:Name="BodyStyles" SelectedItem="{Binding SelectedBodyStyle}" />
                     </Border>
 
-                    <Label Content="DriveType" FontWeight="Bold" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center"/>
+                    <Label Content="Drive type" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center"/>
                     <Border Grid.Row="5" Grid.Column="1" VerticalAlignment="Center">
                         <ComboBox x:Name="DriveTypes" SelectedItem="{Binding SelectedDriveType}" Grid.Row="5" Grid.Column="1"/>
                     </Border>
 
-                    <Label Content="Kilometrage" FontWeight="Bold" Grid.Row="6" Grid.Column="0" VerticalAlignment="Center"/>
+                    <Label Content="Kilometrage" Grid.Row="6" Grid.Column="0" VerticalAlignment="Center"/>
                     <Border Grid.Row="6" Grid.Column="1" VerticalAlignment="Center">
-                        <TextBox x:Name="Kilometrage" PreviewTextInput="NumberValidationTextBox" Width="{Binding Path=ActualWidth, ElementName=Models}" />
+                        <TextBox x:Name="Kilometrage" MaxLength="7" PreviewTextInput="NumberValidationTextBox" Width="{Binding Path=ActualWidth, ElementName=Models}" />
                     </Border>
 
-                    <Label Content="FuelType" FontWeight="Bold" Grid.Row="7" Grid.Column="0" VerticalAlignment="Center"/>
+                    <Label Content="Fuel type" Grid.Row="7" Grid.Column="0" VerticalAlignment="Center"/>
                     <Border Grid.Row="7" Grid.Column="1" VerticalAlignment="Center">
                         <ComboBox x:Name="FuelTypes" SelectedItem="{Binding SelectedFuelType}" />
                     </Border>
 
-                    <Label Content="EngineVolume" FontWeight="Bold" Grid.Row="8" Grid.Column="0" VerticalAlignment="Center"/>
+                    <Label Content="Engine volume (cc)" Grid.Row="8" Grid.Column="0" VerticalAlignment="Center"/>
                     <Border Grid.Row="8" Grid.Column="1" VerticalAlignment="Center">
-                        <TextBox x:Name="EngineVolume" PreviewTextInput="NumberValidationTextBox" Width="{Binding Path=ActualWidth, ElementName=Models}" />
+                        <TextBox x:Name="EngineVolume" MaxLength="4" PreviewTextInput="NumberValidationTextBox" Width="{Binding Path=ActualWidth, ElementName=Models}" />
                     </Border>
 
-                    <Label Content="EnginePowerKW" FontWeight="Bold" Grid.Row="9" Grid.Column="0" VerticalAlignment="Center"/>
+                    <Label Content="Engine power (kW)" Grid.Row="9" Grid.Column="0" VerticalAlignment="Center"/>
                     <Border Grid.Row="9" Grid.Column="1" VerticalAlignment="Center">
-                        <TextBox x:Name="EnginePowerKW" PreviewTextInput="NumberValidationTextBox" Width="{Binding Path=ActualWidth, ElementName=Models}" />
+                        <TextBox x:Name="EnginePowerKW" MaxLength="3" PreviewTextInput="NumberValidationTextBox" Width="{Binding Path=ActualWidth, ElementName=Models}" />
                     </Border>
 
-                    <Label Content="EngineEmissionType" FontWeight="Bold" Grid.Row="10" Grid.Column="0" VerticalAlignment="Center"/>
+                    <Label Content="Engine emission type" Grid.Row="10" Grid.Column="0" VerticalAlignment="Center"/>
                     <Border Grid.Row="10" Grid.Column="1" VerticalAlignment="Center">
                         <ComboBox x:Name="EngineEmissionTypes" SelectedItem="{Binding SelectedEngineEmissionType}" />
                     </Border>
 
-                    <Label Content="GearboxType" FontWeight="Bold" Grid.Row="11" Grid.Column="0" VerticalAlignment="Center"/>
+                    <Label Content="Gearbox type" Grid.Row="11" Grid.Column="0" VerticalAlignment="Center"/>
                     <Border Grid.Row="11" Grid.Column="1" VerticalAlignment="Center">
                         <ComboBox x:Name="GearboxTypes" SelectedItem="{Binding SelectedGearboxType}" />
                     </Border>
                 </UniformGrid>
 
-                <Button x:Name="AddVehicle" Content="Add vehicle" Height="25" Width="100" Grid.Row="2"/>
+                <Button x:Name="AddVehicle" Content="Add vehicle" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Grid>
         </UniformGrid>
     </Grid>

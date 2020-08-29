@@ -30,9 +30,13 @@ namespace VehicleDiary
         {
             builder.RegisterType<RootViewModel>().SingleInstance();
             builder.RegisterType<VehicleDiaryDbContext>().InstancePerDependency();
-            builder.RegisterType<UniversalCRUDService<UserModel>>().InstancePerDependency();
+
+            // SERVICES
             builder.RegisterType<UserService>().SingleInstance();
             builder.RegisterType<PersonUserService>().SingleInstance();
+            builder.RegisterType<SaleListingService>().SingleInstance();
+            
+            builder.RegisterType<UniversalCRUDService<UserModel>>().InstancePerDependency();
             builder.RegisterType<UniversalCRUDService<PersonUserModel>>().InstancePerDependency();
             builder.RegisterType<UniversalCRUDService<ServiceUserModel>>().InstancePerDependency();
             builder.RegisterType<UniversalCRUDService<VehicleModel>>().InstancePerDependency();
@@ -52,6 +56,7 @@ namespace VehicleDiary
             builder.RegisterType<ProfilePanelViewModel>().SingleInstance();
             builder.RegisterType<VinCheckViewModel>().SingleInstance();
             builder.RegisterType<MyVehiclesViewModel>().SingleInstance();
+            builder.RegisterType<MarketViewModel>().SingleInstance();
         }
     }
 }

@@ -5,17 +5,21 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:VehicleDiary.Main.Views"
              mc:Ignorable="d" 
-       d:DesignHeight="450" d:DesignWidth="800" Background="WhiteSmoke">
+             d:DesignHeight="450" d:DesignWidth="800" Background="WhiteSmoke">
     <Grid>
-        <StackPanel Orientation="Vertical" VerticalAlignment="Center" Width="250">
-            <TextBlock Text="VIN check" HorizontalAlignment="Center" FontSize="36" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70" />
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
+        <TextBlock Text="VIN check" HorizontalAlignment="Center" FontSize="36" Grid.Row="0"/>
+
+        <!--COMMENT: added a negative margin to achieve better centering --> 
+        <StackPanel Orientation="Vertical" VerticalAlignment="Center" Width="250" Grid.Row="1" Margin="0 -70 0 0">
             <Label Content="VIN" FontWeight="Bold" />
-            <TextBox x:Name="Vin"/>
+            <TextBox x:Name="Vin" MaxLength="17"/>
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 20, 0, 20">
-                <Button x:Name="GetVinReport" Content="Get report" Height="25" Width="100" />
-            </StackPanel>
+            <Button x:Name="CheckVin" Content="Check VIN" HorizontalAlignment="Center" Margin="0 20 0 0" />
         </StackPanel>
     </Grid>
 </UserControl>

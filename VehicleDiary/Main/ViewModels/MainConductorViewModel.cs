@@ -8,18 +8,20 @@ namespace VehicleDiary.Main.ViewModels
         private readonly IEventAggregator _eventAggregator;
         private readonly VinCheckViewModel _vinCheckViewModel;
         private readonly MyVehiclesViewModel _myVehiclesViewModel;
+        private readonly MarketViewModel _marketViewModel;
         public HeaderViewModel HeaderViewModel { get; }
         public ProfilePanelViewModel ProfilePanelViewModel { get; }
 
-        public MainConductorViewModel(IEventAggregator eventAggregator, HeaderViewModel headerViewModel, VinCheckViewModel vinCheckViewModel, MyVehiclesViewModel myVehiclesViewModel, ProfilePanelViewModel profilePanelViewModel)
+        public MainConductorViewModel(IEventAggregator eventAggregator, HeaderViewModel headerViewModel, VinCheckViewModel vinCheckViewModel, MyVehiclesViewModel myVehiclesViewModel, ProfilePanelViewModel profilePanelViewModel, MarketViewModel marketViewModel)
         {
             _eventAggregator = eventAggregator;
-            _vinCheckViewModel = vinCheckViewModel;
-            _myVehiclesViewModel = myVehiclesViewModel;
             HeaderViewModel = headerViewModel;
             ProfilePanelViewModel = profilePanelViewModel;
+            _vinCheckViewModel = vinCheckViewModel;
+            _myVehiclesViewModel = myVehiclesViewModel;
+            _marketViewModel = marketViewModel;
 
-            Items.AddRange(new Screen[] { _vinCheckViewModel });
+            //Items.AddRange(new Screen[] { _vinCheckViewModel });
         }
 
         protected override void OnActivate()
@@ -44,6 +46,9 @@ namespace VehicleDiary.Main.ViewModels
                     break;
                 case MainNavigationMessages.MY_VEHICLES:
                     ActivateItem(_myVehiclesViewModel);
+                    break;
+                case MainNavigationMessages.MARKET:
+                    ActivateItem(_marketViewModel);
                     break;
                 default:
                     break;

@@ -1,20 +1,25 @@
-﻿using System.Collections.Generic;
+﻿using Caliburn.Micro;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
+using VehicleDiary.Main.Messages;
 using VehicleDiary.Models;
 
 namespace VehicleDiary.Services
 {
-    public class PersonUserService
+    public class PersonUserService : IHandle<DataMessage>
     {
         private readonly VehicleDiaryDbContext _context;
+        private readonly IEventAggregator _eventAggregator;
         public PersonUserModel PersonUser { get; set; }
         public List<VehicleModel> Vehicles { get; set; }
 
-        public PersonUserService(VehicleDiaryDbContext vehicleDiaryDbContext)
+        public PersonUserService(VehicleDiaryDbContext vehicleDiaryDbContext, IEventAggregator eventAggregator)
         {
             _context = vehicleDiaryDbContext;
+            _eventAggregator = eventAggregator;
+            _eventAggregator.Subscribe(this);
             Vehicles = new List<VehicleModel>();
         }
 
@@ -33,6 +38,14 @@ namespace VehicleDiary.Services
         public async Task<IEnumerable<VehicleModel>> GetPersonUserVehicles(List<string> vins)
         {
             return await _context.Set<VehicleModel>().Where(o => vins.Contains(o.Vin)).Include(v => v.VehicleSpecification).ToListAsync();
+        }
+
+        public void Handle(DataMessage message)
+        {
+            if (message.Message == DataMessages.CLEAR_ALL)
+            {
+                Vehicles.Clear();
+            }
         }
     }
 }

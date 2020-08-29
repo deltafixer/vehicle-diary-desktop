@@ -10,16 +10,21 @@
         <StackPanel Orientation="Vertical" VerticalAlignment="Center" Width="250">
             <TextBlock Text="Vehicle Diary" HorizontalAlignment="Center" FontSize="36" />
             
-            <Label Content="Username" FontWeight="Bold" />
+            <Label Content="Username" />
             <TextBox x:Name="Username"/>
             
-            <Label Content="Password" FontWeight="Bold" />
+            <Label Content="Password" />
             <PasswordBox local:PasswordBoxAttach.BoundPassword="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 20, 0, 20">
-                <Button x:Name="Register" Content="Register" Height="25" Width="100" Margin="0, 0, 20, 0"/>
-                <Button x:Name="Login" Content="Login" Height="25" Width="100" />
-            </StackPanel>
+            <Grid Margin="0, 20, 0, 20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                
+                <Button x:Name="Register" Content="Register" Margin="0, 0, 20, 0" Grid.Column="0" HorizontalAlignment="Center"/>
+                <Button x:Name="Login" Content="Login" Grid.Column="1" HorizontalAlignment="Center" Width="{Binding Path=ActualWidth, ElementName=Register}"/>
+            </Grid>
         </StackPanel>
     </Grid>
 </UserControl>

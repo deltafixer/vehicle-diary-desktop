@@ -13,5 +13,6 @@
     {
         CLEAR_ALL,
         USER,
+        HEADER_LOADED,
     }
 }

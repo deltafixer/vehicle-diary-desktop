@@ -1,5 +1,4 @@
 ﻿using Caliburn.Micro;
-using System;
 using System.Windows.Input;
 using VehicleDiary.Main.Messages;
 using VehicleDiary.Models;
@@ -63,6 +62,8 @@ namespace VehicleDiary.Main.ViewModels
                         default:
                             break;
                     }
+                    // COMMENT: to avoid unsafe async reach to context from both this and MyVehiclesViewModel
+                    _eventAggregator.PublishOnUIThread(new DataMessage(DataMessages.HEADER_LOADED));
                     break;
                 default:
                     break;

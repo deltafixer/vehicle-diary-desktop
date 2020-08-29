@@ -6,11 +6,11 @@
              xmlns:local="clr-namespace:VehicleDiary.Main.Views"
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="800" >
-    <DockPanel Background="LightGray">
+    <DockPanel Background="#0095FF">
         <ItemsControl x:Name="MenuItems">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Button Command="{Binding OnClick}" Content="{Binding Name}" FontSize="14" Padding="10 5" Background="LightGray" BorderThickness="0" />
+                    <Button Command="{Binding OnClick}" Content="{Binding Name}" FontSize="14" Background="#0095FF" BorderThickness="0" />
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
             <ItemsControl.ItemsPanel>
@@ -19,7 +19,7 @@
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>
-        <Button x:Name="GoToProfile" Content="Profile" HorizontalAlignment="Left" FontSize="14" Padding="10 5" Background="LightGray" BorderThickness="0" />
-        <Button x:Name="Logout" Content="Logout" HorizontalAlignment="Right" FontSize="14" Padding="10 5" Background="LightGray" BorderThickness="0" />
+        <Button x:Name="GoToProfile" Content="Profile" HorizontalAlignment="Left" FontSize="14" Background="#0095FF" BorderThickness="0" />
+        <Button x:Name="Logout" Content="Logout" HorizontalAlignment="Right" FontSize="14" Background="#0095FF" BorderThickness="0" />
     </DockPanel>
 </UserControl>
