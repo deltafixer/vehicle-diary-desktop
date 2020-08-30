@@ -22,7 +22,7 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 
-                <Button x:Name="Register" Content="Register" Margin="0, 0, 20, 0" Grid.Column="0" HorizontalAlignment="Center"/>
+                <Button x:Name="Register" Content="Register" Margin="0 0 20 0" Grid.Column="0" HorizontalAlignment="Center"/>
                 <Button x:Name="Login" Content="Login" Grid.Column="1" HorizontalAlignment="Center" Width="{Binding Path=ActualWidth, ElementName=Register}"/>
             </Grid>
         </StackPanel>

@@ -35,7 +35,7 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <Button x:Name="ViewSpecification" Content="View specification" Grid.Column="0" HorizontalAlignment="Center" />
+                    <Button x:Name="ViewReport" Content="View report" Grid.Column="0" HorizontalAlignment="Center" />
                     <Button x:Name="Remove" Content="Remove" Grid.Column="1" HorizontalAlignment="Center" />
                 </Grid>
             </Grid>

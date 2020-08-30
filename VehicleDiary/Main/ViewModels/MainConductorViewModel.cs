@@ -9,10 +9,19 @@ namespace VehicleDiary.Main.ViewModels
         private readonly VinCheckViewModel _vinCheckViewModel;
         private readonly MyVehiclesViewModel _myVehiclesViewModel;
         private readonly MarketViewModel _marketViewModel;
+        private readonly ProfileConductorViewModel _profileConductorViewModel;
+        private readonly VehicleReportViewModel _vehicleReportViewModel;
         public HeaderViewModel HeaderViewModel { get; }
         public ProfilePanelViewModel ProfilePanelViewModel { get; }
 
-        public MainConductorViewModel(IEventAggregator eventAggregator, HeaderViewModel headerViewModel, VinCheckViewModel vinCheckViewModel, MyVehiclesViewModel myVehiclesViewModel, ProfilePanelViewModel profilePanelViewModel, MarketViewModel marketViewModel)
+        public MainConductorViewModel(IEventAggregator eventAggregator, 
+            HeaderViewModel headerViewModel, 
+            ProfilePanelViewModel profilePanelViewModel, 
+            VinCheckViewModel vinCheckViewModel, 
+            MyVehiclesViewModel myVehiclesViewModel, 
+            MarketViewModel marketViewModel,
+            ProfileConductorViewModel profileConductorViewModel,
+            VehicleReportViewModel vehicleReportViewModel)
         {
             _eventAggregator = eventAggregator;
             HeaderViewModel = headerViewModel;
@@ -20,6 +29,8 @@ namespace VehicleDiary.Main.ViewModels
             _vinCheckViewModel = vinCheckViewModel;
             _myVehiclesViewModel = myVehiclesViewModel;
             _marketViewModel = marketViewModel;
+            _profileConductorViewModel = profileConductorViewModel;
+            _vehicleReportViewModel = vehicleReportViewModel;
 
             //Items.AddRange(new Screen[] { _vinCheckViewModel });
         }
@@ -49,6 +60,12 @@ namespace VehicleDiary.Main.ViewModels
                     break;
                 case MainNavigationMessages.MARKET:
                     ActivateItem(_marketViewModel);
+                    break;
+                case MainNavigationMessages.PROFILE:
+                    ActivateItem(_profileConductorViewModel);
+                    break;
+                case MainNavigationMessages.VEHICLE_REPORT:
+                    ActivateItem(_vehicleReportViewModel);
                     break;
                 default:
                     break;

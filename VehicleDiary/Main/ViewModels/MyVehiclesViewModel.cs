@@ -18,6 +18,7 @@ namespace VehicleDiary.Main.ViewModels
         private readonly UniversalCRUDService<PersonUserVehicleModel> _personUserVehicleCrudService;
         private readonly UniversalCRUDService<VehicleModel> _vehicleCrudService;
         private readonly UserService _userService;
+        private readonly VehicleService _vehicleService;
         private readonly PersonUserService _personUserService;
         private string _selectedMake = Make.AUDI.ToString();
         private string _selectedModel = Model.A1.ToString();
@@ -46,14 +47,20 @@ namespace VehicleDiary.Main.ViewModels
         public string SelectedGearboxType { get => _selectedGearboxType; set => Set(ref _selectedGearboxType, value); }
         public BindableCollection<VehicleViewModel> Vehicles { get; set; }
 
-        public MyVehiclesViewModel(IEventAggregator eventAggregator, UniversalCRUDService<VehicleSpecificationModel> vehicleSpecificationCrudService, UniversalCRUDService<PersonUserVehicleModel> personUserVehicleCrudService, UniversalCRUDService<VehicleModel> vehicleCrudService, PersonUserService personUserService, UniversalCRUDService<VehicleModel> vehicleService, UserService userService)
+        public MyVehiclesViewModel(IEventAggregator eventAggregator, 
+            UniversalCRUDService<VehicleSpecificationModel> vehicleSpecificationCrudService, 
+            UniversalCRUDService<PersonUserVehicleModel> personUserVehicleCrudService, 
+            UniversalCRUDService<VehicleModel> vehicleCrudService, 
+            PersonUserService personUserService, 
+            UserService userService, 
+            VehicleService vehicleService)
         {
             _eventAggregator = eventAggregator;
             _eventAggregator.Subscribe(this);
             _vehicleSpecificationCrudService = vehicleSpecificationCrudService;
             _personUserVehicleCrudService = personUserVehicleCrudService;
             _vehicleCrudService = vehicleCrudService;
-            _vehicleCrudService = vehicleService;
+            _vehicleService = vehicleService;
             _personUserService = personUserService;
             _userService = userService;
             Vehicles = new BindableCollection<VehicleViewModel>();
@@ -170,7 +177,7 @@ namespace VehicleDiary.Main.ViewModels
 
         private VehicleViewModel CreateVehicleViewModel(VehicleModel vehicleModel)
         {
-            VehicleViewModel vehicleViewModel = new VehicleViewModel(vehicleModel, _vehicleCrudService, _vehicleSpecificationCrudService);
+            VehicleViewModel vehicleViewModel = new VehicleViewModel(_eventAggregator, vehicleModel, _vehicleService, _vehicleCrudService, _vehicleSpecificationCrudService);
             vehicleViewModel.VehicleRemoved += OnVehicleRemoved;
             return vehicleViewModel;
         }

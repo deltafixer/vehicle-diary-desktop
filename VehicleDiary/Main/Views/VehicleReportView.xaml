@@ -1,0 +1,117 @@
+﻿<UserControl x:Class="VehicleDiary.Main.Views.VehicleReportView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:VehicleDiary.Main.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Background="WhiteSmoke">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70" />
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Vehicle report" HorizontalAlignment="Center" FontSize="36" Grid.Row="0"/>
+
+        <Grid Grid.Row="1" Margin="20 0 20 20">
+            <UniformGrid Columns="3">
+                <!--SPECIFICATION-->
+                <UniformGrid Rows="13" Columns="2">
+                    <UniformGrid.Resources >
+                        <Style TargetType="{x:Type Label}" >
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                        <Setter Property="FontSize" Value="14" />
+                        </Style>
+                        <Style TargetType="{x:Type TextBlock}" >
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                        </Style>
+                    </UniformGrid.Resources>
+
+                    <TextBlock Text="Specification" FontSize="18" />
+                    <!--COMMENT: dummy element because UniformGrid does not support column spanning :) -->
+                    <TextBlock Text="" FontSize="18" Grid.ColumnSpan="2"/>
+
+                    <Label Content="VIN"/>
+                    <TextBlock x:Name="Vin"/>
+                    
+                    <Label Content="Make"/>
+                    <TextBlock x:Name="Make"/>
+
+                    <Label Content="Model"/>
+                    <TextBlock x:Name="Model"/>
+
+                    <Label Content="Make date"/>
+                    <TextBlock x:Name="MakeDate"/>
+
+                    <Label Content="Body style"/>
+                    <TextBlock x:Name="BodyStyle"/>
+
+                    <Label Content="Drive type"/>
+                    <TextBlock x:Name="DriveType"/>
+
+                    <Label Content="Kilometrage"/>
+                    <TextBlock x:Name="Kilometrage"/>
+
+                    <Label Content="Fuel type"/>
+                    <TextBlock x:Name="FuelType"/>
+
+                    <Label Content="Engine volume (cc)"/>
+                    <TextBlock x:Name="EngineVolume"/>
+
+                    <Label Content="Engine power (kW)"/>
+                    <TextBlock x:Name="EnginePowerKW"/>
+
+                    <Label Content="Engine emission type"/>
+                    <TextBlock x:Name="EngineEmissionType"/>
+
+                    <Label Content="Gearbox type"/>
+                    <TextBlock x:Name="GearboxType"/>
+                </UniformGrid>
+
+                <!--ACCIDENTS-->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Accidents" FontSize="18" Grid.Row="0" />
+
+                    <ItemsControl x:Name="Accidents" Grid.Row="1">
+                        <ItemsControl.Template>
+                            <ControlTemplate>
+                                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                    <ItemsPresenter />
+                                </ScrollViewer>
+                            </ControlTemplate>
+                        </ItemsControl.Template>
+                    </ItemsControl>
+                </Grid>
+
+                <!--SERVICES-->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Services" FontSize="18" Grid.Row="0" />
+
+                    <ItemsControl x:Name="Services" Grid.Row="1">
+                        <ItemsControl.Template>
+                            <ControlTemplate>
+                                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                    <ItemsPresenter />
+                                </ScrollViewer>
+                            </ControlTemplate>
+                        </ItemsControl.Template>
+                    </ItemsControl>
+                </Grid>
+
+            </UniformGrid>
+        </Grid>
+        
+    </Grid>
+</UserControl>

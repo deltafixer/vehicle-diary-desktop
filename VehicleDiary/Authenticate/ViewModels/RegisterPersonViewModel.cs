@@ -15,7 +15,7 @@ namespace VehicleDiary.Authenticate.ViewModels
     public class RegisterPersonViewModel : Screen
     {
         private readonly IEventAggregator _eventAggregator;
-        private readonly UniversalCRUDService<PersonUserModel> _personUserService;
+        private readonly UniversalCRUDService<PersonUserModel> _personUserCrudService;
         private string _firstName;
         private string _lastName;
         private string _username;
@@ -23,10 +23,10 @@ namespace VehicleDiary.Authenticate.ViewModels
         private string _repeatPassword;
         private string _selectedPersonType = PersonType.INDIVIDUAL.ToString();
 
-        public RegisterPersonViewModel(IEventAggregator eventAggregator, UniversalCRUDService<PersonUserModel> personUserService)
+        public RegisterPersonViewModel(IEventAggregator eventAggregator, UniversalCRUDService<PersonUserModel> personUserCrudService)
         {
             _eventAggregator = eventAggregator;
-            _personUserService = personUserService;
+            _personUserCrudService = personUserCrudService;
         }
 
         public string FirstName
@@ -66,7 +66,7 @@ namespace VehicleDiary.Authenticate.ViewModels
             try
             {
                 UserModel user = new UserModel { Username = Username, Password = BCrypt.HashPassword(Password), Role = Role.USER, UserType = UserType.PERSON };
-                await _personUserService.Create(new PersonUserModel { User = user, FirstName = FirstName, LastName = LastName, PersonType = (PersonType)Enum.Parse(typeof(PersonType), SelectedPersonType) });
+                await _personUserCrudService.Create(new PersonUserModel { User = user, FirstName = FirstName, LastName = LastName, PersonType = (PersonType)Enum.Parse(typeof(PersonType), SelectedPersonType) });
 
                 if (MessageBox.Show("Successfully created a person account.\nUse Your new credentials to login!", "Registration successful", MessageBoxButton.OK, MessageBoxImage.Information) == MessageBoxResult.OK)
                 {

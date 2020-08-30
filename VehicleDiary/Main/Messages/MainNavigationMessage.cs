@@ -15,5 +15,6 @@
         MARKET,
         REPORT_ACCIDENT,
         PROFILE,
+        VEHICLE_REPORT,
     }
 }

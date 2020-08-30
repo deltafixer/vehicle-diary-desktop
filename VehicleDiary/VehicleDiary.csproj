@@ -116,7 +116,13 @@
     <Compile Include="Authenticate\Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Main\ViewModels\PersonUserProfileViewModel.cs" />
+    <Compile Include="Main\ViewModels\ProfileConductorViewModel.cs" />
     <Compile Include="Main\ViewModels\SaleListingViewModel.cs" />
+    <Compile Include="Main\ViewModels\ServiceUserProfileViewModel.cs" />
+    <Compile Include="Main\ViewModels\VehicleAccidentViewModel.cs" />
+    <Compile Include="Main\ViewModels\VehicleReportViewModel.cs" />
+    <Compile Include="Main\ViewModels\VehicleServiceViewModel.cs" />
     <Compile Include="Main\Views\MarketView.xaml.cs">
       <DependentUpon>MarketView.xaml</DependentUpon>
     </Compile>
@@ -146,8 +152,27 @@
     <Compile Include="Main\Views\MyVehiclesView.xaml.cs">
       <DependentUpon>MyVehiclesView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Main\Views\PasswordBoxAttach.cs" />
+    <Compile Include="Main\Views\PersonUserProfileView.xaml.cs">
+      <DependentUpon>PersonUserProfileView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Main\Views\ProfileConductorView.xaml.cs">
+      <DependentUpon>ProfileConductorView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Main\Views\SaleListingView.xaml.cs">
       <DependentUpon>SaleListingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Main\Views\ServiceUserProfileView.xaml.cs">
+      <DependentUpon>ServiceUserProfileView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Main\Views\VehicleAccidentView.xaml.cs">
+      <DependentUpon>VehicleAccidentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Main\Views\VehicleReportView.xaml.cs">
+      <DependentUpon>VehicleReportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Main\Views\VehicleServiceView.xaml.cs">
+      <DependentUpon>VehicleServiceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Main\Views\VehicleView.xaml.cs">
       <DependentUpon>VehicleView.xaml</DependentUpon>
@@ -178,8 +203,10 @@
     <Compile Include="Services\ICRUDService.cs" />
     <Compile Include="Services\PersonUserService.cs" />
     <Compile Include="Services\SaleListingService.cs" />
+    <Compile Include="Services\ServiceUserService.cs" />
     <Compile Include="Services\UniversalCRUDService.cs" />
     <Compile Include="Services\UserService.cs" />
+    <Compile Include="Services\VehicleService.cs" />
     <Compile Include="Utilities\CommandHandler.cs" />
     <Compile Include="VehicleDiaryDbContext.cs" />
     <Compile Include="Models\VehicleServiceModel.cs" />
@@ -254,7 +281,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Main\Views\PersonUserProfileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Main\Views\ProfileConductorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Main\Views\SaleListingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Main\Views\ServiceUserProfileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Main\Views\VehicleAccidentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Main\Views\VehicleReportView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Main\Views\VehicleServiceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -18,15 +18,22 @@ namespace VehicleDiary.Main.ViewModels
         private readonly IEventAggregator _eventAggregator;
         private readonly UserService _userService;
         private readonly PersonUserService _personUserService;
+        private readonly ServiceUserService _serviceUserService;
         private readonly UniversalCRUDService<PersonUserModel> _personUserCRUDService;
         public BindableCollection<CustomMenuItem> MenuItems { get; set; }
 
-        public HeaderViewModel(IEventAggregator eventAggregator, UserService userService, PersonUserService personUserService, UniversalCRUDService<PersonUserModel> personUserCRUDService)
+        public HeaderViewModel(
+            IEventAggregator eventAggregator, 
+            UserService userService, 
+            PersonUserService personUserService, 
+            ServiceUserService serviceUserService,
+            UniversalCRUDService<PersonUserModel> personUserCRUDService)
         {
             _eventAggregator = eventAggregator;
             _eventAggregator.Subscribe(this);
             _userService = userService;
             _personUserService = personUserService;
+            _serviceUserService = serviceUserService;
             _personUserCRUDService = personUserCRUDService;
             MenuItems = new BindableCollection<CustomMenuItem>();
         }
@@ -48,6 +55,7 @@ namespace VehicleDiary.Main.ViewModels
                             });
                             PersonUserModel personUser = await _personUserService.Get(_userService.User.Username);
                             _personUserService.PersonUser = personUser;
+                            _personUserService.PersonUser.User = _userService.User;
                             if (personUser.PersonType == PersonType.POLICE)
                             {
                                 MenuItems.Insert(3, new CustomMenuItem { Name = "Report accident" });
@@ -58,6 +66,9 @@ namespace VehicleDiary.Main.ViewModels
                             {
                                 new CustomMenuItem { Name = "Services" },
                             });
+                            ServiceUserModel serviceUser = await _serviceUserService.Get(_userService.User.Username);
+                            _serviceUserService.ServiceUser = serviceUser;
+                            _serviceUserService.ServiceUser.User = _userService.User;
                             break;
                         default:
                             break;
