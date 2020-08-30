@@ -4,8 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:VehicleDiary.Main.Views"
-             mc:Ignorable="d" 
-             Background="WhiteSmoke">
+             mc:Ignorable="d">
     <Grid>
         <Border Margin="20 20 0 0" BorderThickness="0.5" BorderBrush="Green" CornerRadius="5" Padding="20 10">
             <Grid>

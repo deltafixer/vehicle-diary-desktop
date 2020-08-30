@@ -1,6 +1,9 @@
 ﻿using Caliburn.Micro;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Linq;
+using System.Windows.Controls;
+using System.Windows.Media;
 using VehicleDiary.Models;
 using VehicleDiary.Services;
 using static VehicleDiary.Models.Enums.VehicleEnums;
@@ -44,5 +47,16 @@ namespace VehicleDiary.Main.ViewModels
         public EngineEmissionType EngineEmissionType => _vehicle.VehicleSpecification.EngineEmissionType;
         public GearboxType GearboxType => _vehicle.VehicleSpecification.GearboxType;
 
+        public RelayCommand<Visual> PrintToPdf
+        {
+            get
+            {
+                return new RelayCommand<Visual>(visual =>
+                {
+                    PrintDialog printDlg = new PrintDialog();
+                    printDlg.PrintVisual(visual, "Vehicle report");
+                });
+            }
+        }
     }
 }
