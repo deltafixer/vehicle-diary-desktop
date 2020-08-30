@@ -118,6 +118,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Authenticate\Messages\AuthenticationNavigationMessage.cs" />
+    <Compile Include="Main\ViewModels\CreateSaleListingViewModel.cs" />
     <Compile Include="Main\ViewModels\MarketViewModel.cs" />
     <Compile Include="Authenticate\ViewModels\RegisterPersonViewModel.cs" />
     <Compile Include="Authenticate\ViewModels\RegisterServiceViewModel.cs" />
@@ -135,6 +136,9 @@
     <Compile Include="Main\ViewModels\VehicleAccidentViewModel.cs" />
     <Compile Include="Main\ViewModels\VehicleReportViewModel.cs" />
     <Compile Include="Main\ViewModels\VehicleServiceViewModel.cs" />
+    <Compile Include="Main\Views\CreateSaleListingView.xaml.cs">
+      <DependentUpon>CreateSaleListingView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Main\Views\MarketView.xaml.cs">
       <DependentUpon>MarketView.xaml</DependentUpon>
     </Compile>
@@ -266,6 +270,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Authenticate\Views\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Main\Views\CreateSaleListingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

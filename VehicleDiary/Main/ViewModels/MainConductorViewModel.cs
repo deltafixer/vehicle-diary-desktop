@@ -11,17 +11,19 @@ namespace VehicleDiary.Main.ViewModels
         private readonly MarketViewModel _marketViewModel;
         private readonly ProfileConductorViewModel _profileConductorViewModel;
         private readonly VehicleReportViewModel _vehicleReportViewModel;
+        private readonly CreateSaleListingViewModel _createSaleListingViewModel;
         public HeaderViewModel HeaderViewModel { get; }
         public ProfilePanelViewModel ProfilePanelViewModel { get; }
 
-        public MainConductorViewModel(IEventAggregator eventAggregator, 
-            HeaderViewModel headerViewModel, 
-            ProfilePanelViewModel profilePanelViewModel, 
-            VinCheckViewModel vinCheckViewModel, 
-            MyVehiclesViewModel myVehiclesViewModel, 
+        public MainConductorViewModel(IEventAggregator eventAggregator,
+            HeaderViewModel headerViewModel,
+            ProfilePanelViewModel profilePanelViewModel,
+            VinCheckViewModel vinCheckViewModel,
+            MyVehiclesViewModel myVehiclesViewModel,
             MarketViewModel marketViewModel,
             ProfileConductorViewModel profileConductorViewModel,
-            VehicleReportViewModel vehicleReportViewModel)
+            VehicleReportViewModel vehicleReportViewModel,
+            CreateSaleListingViewModel createSaleListingViewModel)
         {
             _eventAggregator = eventAggregator;
             HeaderViewModel = headerViewModel;
@@ -31,6 +33,7 @@ namespace VehicleDiary.Main.ViewModels
             _marketViewModel = marketViewModel;
             _profileConductorViewModel = profileConductorViewModel;
             _vehicleReportViewModel = vehicleReportViewModel;
+            _createSaleListingViewModel = createSaleListingViewModel;
 
             //Items.AddRange(new Screen[] { _vinCheckViewModel });
         }
@@ -66,6 +69,9 @@ namespace VehicleDiary.Main.ViewModels
                     break;
                 case MainNavigationMessages.VEHICLE_REPORT:
                     ActivateItem(_vehicleReportViewModel);
+                    break;
+                case MainNavigationMessages.VEHICLE_SALE_LISTING:
+                    ActivateItem(_createSaleListingViewModel);
                     break;
                 default:
                     break;

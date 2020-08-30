@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="VehicleDiary.Main.Views.CreateSaleListingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:VehicleDiary.Main.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Background="WhiteSmoke">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Create sale listing" HorizontalAlignment="Center" FontSize="36" Grid.Row="0"/>
+
+        <!--COMMENT: added a negative margin to achieve better centering -->
+        <StackPanel Orientation="Vertical" VerticalAlignment="Center" Width="250" Grid.Row="1" Margin="0 -36 0 0">
+            <Label Content="Make" FontWeight="Bold" />
+            <TextBlock x:Name="Make" />
+
+            <Label Content="Model" FontWeight="Bold" />
+            <TextBlock x:Name="Model" />
+
+            <Label Content="VIN" FontWeight="Bold" />
+            <TextBlock x:Name="Vin" />
+
+            <Label Content="Condition" FontWeight="Bold"  />
+            <ComboBox x:Name="Conditions" SelectedItem="{Binding SelectedCondition}" />
+
+            <Label Content="Price" FontWeight="Bold" />
+            <TextBox x:Name="Price" MaxLength="8" />
+
+            <Button x:Name="SubmitListing" Content="Submit listing" HorizontalAlignment="Center" Margin="0 20 0 0" />
+        </StackPanel>
+    </Grid>
+</UserControl>

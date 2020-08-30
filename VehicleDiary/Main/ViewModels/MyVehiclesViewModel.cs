@@ -20,6 +20,7 @@ namespace VehicleDiary.Main.ViewModels
         private readonly UserService _userService;
         private readonly VehicleService _vehicleService;
         private readonly PersonUserService _personUserService;
+        private readonly SaleListingService _saleListingService;
         private string _selectedMake = Make.AUDI.ToString();
         private string _selectedModel = Model.A1.ToString();
         private string _vin;
@@ -53,7 +54,8 @@ namespace VehicleDiary.Main.ViewModels
             UniversalCRUDService<VehicleModel> vehicleCrudService, 
             PersonUserService personUserService, 
             UserService userService, 
-            VehicleService vehicleService)
+            VehicleService vehicleService,
+            SaleListingService saleListingService)
         {
             _eventAggregator = eventAggregator;
             _eventAggregator.Subscribe(this);
@@ -63,6 +65,7 @@ namespace VehicleDiary.Main.ViewModels
             _vehicleService = vehicleService;
             _personUserService = personUserService;
             _userService = userService;
+            _saleListingService = saleListingService;
             Vehicles = new BindableCollection<VehicleViewModel>();
         }
 
@@ -177,7 +180,7 @@ namespace VehicleDiary.Main.ViewModels
 
         private VehicleViewModel CreateVehicleViewModel(VehicleModel vehicleModel)
         {
-            VehicleViewModel vehicleViewModel = new VehicleViewModel(_eventAggregator, vehicleModel, _vehicleService, _vehicleCrudService, _vehicleSpecificationCrudService);
+            VehicleViewModel vehicleViewModel = new VehicleViewModel(_eventAggregator, vehicleModel, _vehicleService, _saleListingService, _vehicleCrudService, _vehicleSpecificationCrudService);
             vehicleViewModel.VehicleRemoved += OnVehicleRemoved;
             return vehicleViewModel;
         }

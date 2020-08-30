@@ -16,5 +16,6 @@
         REPORT_ACCIDENT,
         PROFILE,
         VEHICLE_REPORT,
+        VEHICLE_SALE_LISTING,
     }
 }
