@@ -57,7 +57,7 @@ namespace VehicleDiary.Main.ViewModels
                             _personUserService.PersonUser.User = _userService.User;
                             if (personUser.PersonType == PersonType.POLICE)
                             {
-                                MenuItems.Insert(3, new CustomMenuItem { Name = "Report accident", OnClick = GoToReportAccident });
+                                MenuItems.Insert(2, new CustomMenuItem { Name = "Report accident", OnClick = GoToReportAccident });
                             }
                             break;
                         case UserType.SERVICE:
