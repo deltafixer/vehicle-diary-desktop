@@ -55,6 +55,13 @@ The market screen displays a list of all of the vehicles that are listed for sal
 
 Upon creating a sale listing for a vehicle, a user is redirected to the marketing screen and can see his/her listing up and active.
 
+For every sale listing, the application generates a **suggestion score**.
+
+This score is calculated based on:
+   * Vehicle make/model average asking price
+   * Number of services (incl. recommended services per year constant)
+   * Number of accidents (if accident count is bigger or equal to 4, the vehicle is written of and should not be sold)
+
 ### Add service
 
 A feature only available to users with service profiles.
@@ -101,6 +108,5 @@ Screens are responsive.
 
 ## Missing from initial plan
 
-1. Score sale listing based on vehicle history.
-2. Edit/delete sale listing (probably introduce better logic for displaying sale listings).
-3. Admin account with complete control (not really a must-have due to users being able to manipulate their own data).
+1. Edit/delete sale listing (probably introduce better logic for displaying sale listings).
+2. Admin account with complete control (not really a must-have due to users being able to manipulate their own data).

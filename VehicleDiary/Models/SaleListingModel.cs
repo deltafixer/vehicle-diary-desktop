@@ -15,5 +15,7 @@ namespace VehicleDiary.Models
         public float Price { get; set; }
         public DateTime DateAdded { get; set; }
         public Condition Condition { get; set; }
+        [NotMapped]
+        public double SuggestionScore { get; set; }
     }
 }

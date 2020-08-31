@@ -19,22 +19,19 @@ namespace VehicleDiary.Main.ViewModels
         private readonly UserService _userService;
         private readonly PersonUserService _personUserService;
         private readonly ServiceUserService _serviceUserService;
-        private readonly UniversalCRUDService<PersonUserModel> _personUserCRUDService;
         public BindableCollection<CustomMenuItem> MenuItems { get; set; }
 
         public HeaderViewModel(
             IEventAggregator eventAggregator,
             UserService userService,
             PersonUserService personUserService,
-            ServiceUserService serviceUserService,
-            UniversalCRUDService<PersonUserModel> personUserCRUDService)
+            ServiceUserService serviceUserService)
         {
             _eventAggregator = eventAggregator;
             _eventAggregator.Subscribe(this);
             _userService = userService;
             _personUserService = personUserService;
             _serviceUserService = serviceUserService;
-            _personUserCRUDService = personUserCRUDService;
             MenuItems = new BindableCollection<CustomMenuItem>();
         }
 

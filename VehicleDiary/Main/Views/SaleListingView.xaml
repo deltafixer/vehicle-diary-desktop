@@ -11,6 +11,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -34,6 +35,12 @@
 
                 <Label Content="Price" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="4"/>
                 <TextBlock Text="{Binding Price, FallbackValue='10.000'}" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="4"/>
+
+                <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Label Content="Suggestion score: "/>
+                    <TextBlock Text="{Binding SuggestionScore, FallbackValue='50'}" VerticalAlignment="Center"/>
+                    <TextBlock Text="/100" VerticalAlignment="Center"/>
+                </StackPanel>
             </Grid>
         </Border>
     </Grid>

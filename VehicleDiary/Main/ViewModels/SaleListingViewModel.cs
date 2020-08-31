@@ -18,5 +18,6 @@ namespace VehicleDiary.Main.ViewModels
         public float Price => _saleListing.Price;
         public DateTime DateAdded => _saleListing.DateAdded;
         public Condition Condition => _saleListing.Condition;
+        public double SuggestionScore => _saleListing.SuggestionScore;
     }
 }

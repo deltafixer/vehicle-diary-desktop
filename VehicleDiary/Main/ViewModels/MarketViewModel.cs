@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using VehicleDiary.Models;
@@ -30,6 +31,11 @@ namespace VehicleDiary.Main.ViewModels
                 IEnumerable<SaleListingModel> saleListings = await _saleListingService.GetSaleListingsWithVehicles();
                 if (saleListings != null)
                 {
+                    foreach(SaleListingModel saleListing in saleListings)
+                    {
+                        double score = await _saleListingService.GetSaleListingScore(saleListing.Id);
+                        saleListing.SuggestionScore = score;
+                    }
                     _saleListingService.SaleListings.AddRange(saleListings);
                     SaleListings.AddRange(_saleListingService.SaleListings.Select(saleListing => new SaleListingViewModel(saleListing)));
                     SaleListingsCount = SaleListings.Count;
