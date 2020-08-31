@@ -17,11 +17,11 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Label Content="Date of accident" FontWeight="Bold" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
+                <Label Content="Date of accident" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
                 <TextBlock Text="{Binding DateOfAccident, FallbackValue='1.1.2020.'}" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="0"/>
 
                 <!--COMMENT: would have wrapped the text if WPF had text wrapping option on labels...-->
-                <Label Content="Damage price evaluation" FontWeight="Bold" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1" />
+                <Label Content="Damage price evaluation" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1" />
                 <TextBlock Text="{Binding DamagePriceEvaluation, FallbackValue='1.000'}" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1" />
             </Grid>
         </Border>

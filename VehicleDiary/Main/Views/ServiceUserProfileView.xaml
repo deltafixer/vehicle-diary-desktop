@@ -9,19 +9,19 @@
     <Grid>
         <StackPanel Orientation="Vertical" VerticalAlignment="Center" Width="250">
 
-            <Label Content="Name" FontWeight="Bold"  />
+            <Label Content="Name" />
             <TextBox x:Name="Name" />
 
-            <Label Content="Current password" FontWeight="Bold" />
+            <Label Content="Current password" />
             <PasswordBox local:PasswordBoxAttach.BoundPassword="{Binding CurrentPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-            <Label Content="Password" FontWeight="Bold" />
+            <Label Content="Password" />
             <PasswordBox local:PasswordBoxAttach.BoundPassword="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-            <Label Content="Repeat password" FontWeight="Bold" />
+            <Label Content="Repeat password" />
             <PasswordBox local:PasswordBoxAttach.BoundPassword="{Binding RepeatPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-            <Label Content="Service type" FontWeight="Bold"  />
+            <Label Content="Service type" />
             <ComboBox x:Name="ServiceTypes" SelectedItem="{Binding SelectedServiceType}" />
 
             <Button x:Name="Save" Content="Save" HorizontalAlignment="Center" Margin="0 20 0 0"/>

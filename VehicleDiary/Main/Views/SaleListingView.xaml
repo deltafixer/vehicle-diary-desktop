@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:VehicleDiary.Main.Views"
              mc:Ignorable="d">
     <Grid>
-        <Border Margin="20 20 0 0" BorderThickness="0.5" BorderBrush="DimGray" CornerRadius="5" Padding="20 10">
+        <Border Margin="20" BorderThickness="0.5" BorderBrush="DimGray" CornerRadius="5" Padding="20 10">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -20,19 +20,19 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Label Content="Make" FontWeight="Bold" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
+                <Label Content="Make" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
                 <TextBlock Text="{Binding Make, FallbackValue='Opel'}" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="0"/>
 
-                <Label Content="Model" FontWeight="Bold" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1"/>
+                <Label Content="Model" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1"/>
                 <TextBlock Text="{Binding Model, FallbackValue='Astra J GTC'}" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1"/>
 
-                <Label Content="Date added" FontWeight="Bold" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="2"/>
+                <Label Content="Date added" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="2"/>
                 <TextBlock Text="{Binding DateAdded, FallbackValue='1.1.2020.'}" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="2"/>
 
-                <Label Content="Condition" FontWeight="Bold" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="3"/>
+                <Label Content="Condition" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="3"/>
                 <TextBlock Text="{Binding Condition, FallbackValue='USED'}" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="3"/>
 
-                <Label Content="Price" FontWeight="Bold" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="4"/>
+                <Label Content="Price" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="4"/>
                 <TextBlock Text="{Binding Price, FallbackValue='10.000'}" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="4"/>
             </Grid>
         </Border>

@@ -16,11 +16,11 @@
         <TextBlock Text="Market" HorizontalAlignment="Center" FontSize="36" Grid.Row="0"/>
 
         <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
-            <TextBlock Text="Total vehicles for sale: "/>
+            <TextBlock Text="Total vehicles for sale: " />
             <TextBlock x:Name="SaleListingsCount" />
         </StackPanel>
 
-        <ItemsControl x:Name="Vehicles" Grid.Row="2">
+        <ItemsControl x:Name="SaleListings" Grid.Row="2">
             <ItemsControl.Template>
                 <ControlTemplate>
                     <ScrollViewer VerticalScrollBarVisibility="Auto">

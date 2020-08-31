@@ -17,5 +17,6 @@
         PROFILE,
         VEHICLE_REPORT,
         VEHICLE_SALE_LISTING,
+        ADD_SERVICE,
     }
 }

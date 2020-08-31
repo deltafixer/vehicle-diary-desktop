@@ -8,9 +8,9 @@
              d:DesignHeight="450" d:DesignWidth="800" Background="WhiteSmoke">
     <Grid>
         <StackPanel Orientation="Vertical" VerticalAlignment="Center" Width="250">
-            <TextBlock Text="Register" HorizontalAlignment="Center" FontSize="36" Margin="0, 0, 0, 10" />
+            <TextBlock Text="Register" HorizontalAlignment="Center" FontSize="36" Margin="0 0 0 10" />
 
-            <Label Content="Profile type" FontWeight="Bold" Margin="0, 0, 0, 10"/>
+            <Label Content="Profile type" Margin="0 0 0 10"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <RadioButton Name="PersonTypeIsChecked" GroupName="ProfileTypeGroup" Content="Person"  Margin="0, 0, 10, 0" />
                 <RadioButton Name="ServiceTypeIsChecked" GroupName="ProfileTypeGroup" Content="Service" />

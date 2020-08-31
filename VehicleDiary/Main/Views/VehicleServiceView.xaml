@@ -19,13 +19,13 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Label Content="Date taken" FontWeight="Bold" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
+                <Label Content="Date taken" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
                 <TextBlock Text="{Binding DateTaken, FallbackValue='1.1.2020.'}" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="0" />
 
-                <Label Content="Price" FontWeight="Bold" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1" />
+                <Label Content="Price" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1" />
                 <TextBlock Text="{Binding Price, FallbackValue='1.000'}" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1" />
 
-                <Label Content="Service details" FontWeight="Bold" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="2" />
+                <Label Content="Service details" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="2" />
                 <TextBlock Text="{Binding ServiceDetails, FallbackValue='Replaced engine mounts.'}" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="2" />
 
                 <Button x:Name="ServiceInfo" Content="Service info" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" Margin="0 10 0 0"/>

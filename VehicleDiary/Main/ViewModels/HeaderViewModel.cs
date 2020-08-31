@@ -23,9 +23,9 @@ namespace VehicleDiary.Main.ViewModels
         public BindableCollection<CustomMenuItem> MenuItems { get; set; }
 
         public HeaderViewModel(
-            IEventAggregator eventAggregator, 
-            UserService userService, 
-            PersonUserService personUserService, 
+            IEventAggregator eventAggregator,
+            UserService userService,
+            PersonUserService personUserService,
             ServiceUserService serviceUserService,
             UniversalCRUDService<PersonUserModel> personUserCRUDService)
         {
@@ -49,7 +49,6 @@ namespace VehicleDiary.Main.ViewModels
                             // COMMENT: Profile and Logout buttons are defined in the View. They are 'static' elements visible in all cases.
                             MenuItems.AddRange(new BindableCollection<CustomMenuItem>
                             {
-                                new CustomMenuItem { Name = "Check VIN", OnClick = GoToCheckVin},
                                 new CustomMenuItem { Name = "My vehicles", OnClick = GoToMyVehicles},
                                 new CustomMenuItem { Name = "Market", OnClick = GoToMarket },
                             });
@@ -58,13 +57,13 @@ namespace VehicleDiary.Main.ViewModels
                             _personUserService.PersonUser.User = _userService.User;
                             if (personUser.PersonType == PersonType.POLICE)
                             {
-                                MenuItems.Insert(3, new CustomMenuItem { Name = "Report accident" });
+                                MenuItems.Insert(3, new CustomMenuItem { Name = "Report accident", OnClick = GoToReportAccident });
                             }
                             break;
                         case UserType.SERVICE:
                             MenuItems.AddRange(new BindableCollection<CustomMenuItem>
                             {
-                                new CustomMenuItem { Name = "Services" },
+                                new CustomMenuItem { Name = "Add service", OnClick = GoToAddService },
                             });
                             ServiceUserModel serviceUser = await _serviceUserService.Get(_userService.User.Username);
                             _serviceUserService.ServiceUser = serviceUser;
@@ -81,13 +80,6 @@ namespace VehicleDiary.Main.ViewModels
             }
         }
 
-        public ICommand GoToCheckVin
-        {
-            get
-            {
-                return new CommandHandler(() => ActionGoToCheckVin());
-            }
-        }
         public ICommand GoToMyVehicles
         {
             get
@@ -102,21 +94,40 @@ namespace VehicleDiary.Main.ViewModels
                 return new CommandHandler(() => ActionGoToMarket());
             }
         }
-        public void ActionGoToCheckVin()
+        public ICommand GoToReportAccident
         {
-            _eventAggregator.PublishOnUIThread(new MainNavigationMessage(MainNavigationMessages.CHECK_VIN));
+            get
+            {
+                return new CommandHandler(() => ActionGoToReportAccident());
+            }
+        }
+        public ICommand GoToAddService
+        {
+            get
+            {
+                return new CommandHandler(() => ActionGoToAddService());
+            }
         }
 
         public void ActionGoToMyVehicles()
         {
             _eventAggregator.PublishOnUIThread(new MainNavigationMessage(MainNavigationMessages.MY_VEHICLES));
         }
-
         public void ActionGoToMarket()
         {
             _eventAggregator.PublishOnUIThread(new MainNavigationMessage(MainNavigationMessages.MARKET));
         }
 
+        public void ActionGoToReportAccident()
+        {
+            _eventAggregator.PublishOnUIThread(new MainNavigationMessage(MainNavigationMessages.REPORT_ACCIDENT));
+        }
+        public void ActionGoToAddService()
+        {
+            _eventAggregator.PublishOnUIThread(new MainNavigationMessage(MainNavigationMessages.ADD_SERVICE));
+        }
+
+        public void GoToCheckVin() => _eventAggregator.PublishOnUIThread(new MainNavigationMessage(MainNavigationMessages.CHECK_VIN));
         public void GoToProfile() => _eventAggregator.PublishOnUIThread(new MainNavigationMessage(MainNavigationMessages.PROFILE));
 
         public void Logout()

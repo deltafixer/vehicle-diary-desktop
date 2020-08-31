@@ -9,23 +9,23 @@
     <Grid>
         <StackPanel Orientation="Vertical" VerticalAlignment="Center" Width="250">
 
-            <Label Content="First name" FontWeight="Bold"  />
+            <Label Content="First name" />
             <TextBox x:Name="FirstName" />
 
-            <Label Content="Last name" FontWeight="Bold" />
+            <Label Content="Last name" />
             <TextBox x:Name="LastName" />
 
             <!--COMMENT: wasn't sure how to re-use PasswordBoxAttach, thus copy-paste :D-->
-            <Label Content="Current password" FontWeight="Bold" />
+            <Label Content="Current password" />
             <PasswordBox local:PasswordBoxAttach.BoundPassword="{Binding CurrentPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-            <Label Content="Password" FontWeight="Bold" />
+            <Label Content="Password" />
             <PasswordBox local:PasswordBoxAttach.BoundPassword="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-            <Label Content="Repeat password" FontWeight="Bold" />
+            <Label Content="Repeat password" />
             <PasswordBox local:PasswordBoxAttach.BoundPassword="{Binding RepeatPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-            <Label Content="Person type" FontWeight="Bold"  />
+            <Label Content="Person type" />
             <ComboBox x:Name="PersonTypes" SelectedItem="{Binding SelectedPersonType}" />
 
             <Button x:Name="Save" Content="Save" HorizontalAlignment="Center" Margin="0 20 0 0"/>

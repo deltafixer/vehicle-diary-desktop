@@ -13,7 +13,6 @@ namespace VehicleDiary.Main.ViewModels
         private readonly IEventAggregator _eventAggregator;
         private readonly VehicleModel _vehicle;
         private readonly VehicleService _vehicleService;
-        private readonly SaleListingService _saleListingService;
         private readonly UniversalCRUDService<VehicleModel> _vehicleCrudService;
         private readonly UniversalCRUDService<VehicleSpecificationModel> _vehicleSpecificationCrudService;
 
@@ -28,7 +27,6 @@ namespace VehicleDiary.Main.ViewModels
             _eventAggregator = eventAggregator;
             _vehicle = vehicle;
             _vehicleService = vehicleService;
-            _saleListingService = saleListingService;
             _vehicleCrudService = vehicleCrudService;
             _vehicleSpecificationCrudService = vehicleSpecificationCrudService;
         }
@@ -41,7 +39,7 @@ namespace VehicleDiary.Main.ViewModels
 
         public void ListForSale()
         {
-            _saleListingService.VehicleForNewSaleListing = _vehicle;
+            _vehicleService.VehicleForNewSaleListing = _vehicle;
             _eventAggregator.PublishOnUIThread(new MainNavigationMessage(MainNavigationMessages.VEHICLE_SALE_LISTING));
         }
 

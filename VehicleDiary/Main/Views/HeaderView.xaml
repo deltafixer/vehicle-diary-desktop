@@ -7,6 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="800" >
     <DockPanel Background="#0095FF">
+        <Button x:Name="GoToCheckVin" Content="Check VIN" FontSize="14" Background="#0095FF" BorderThickness="0" />
         <ItemsControl x:Name="MenuItems">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>

@@ -1,4 +1,5 @@
-﻿using Caliburn.Micro;
+﻿
+using Caliburn.Micro;
 using VehicleDiary.Main.Messages;
 
 namespace VehicleDiary.Main.ViewModels
@@ -12,6 +13,8 @@ namespace VehicleDiary.Main.ViewModels
         private readonly ProfileConductorViewModel _profileConductorViewModel;
         private readonly VehicleReportViewModel _vehicleReportViewModel;
         private readonly CreateSaleListingViewModel _createSaleListingViewModel;
+        private readonly ReportAccidentViewModel _reportAccidentViewModel;
+        private readonly AddServiceViewModel _addServiceViewModel;
         public HeaderViewModel HeaderViewModel { get; }
         public ProfilePanelViewModel ProfilePanelViewModel { get; }
 
@@ -23,7 +26,9 @@ namespace VehicleDiary.Main.ViewModels
             MarketViewModel marketViewModel,
             ProfileConductorViewModel profileConductorViewModel,
             VehicleReportViewModel vehicleReportViewModel,
-            CreateSaleListingViewModel createSaleListingViewModel)
+            CreateSaleListingViewModel createSaleListingViewModel,
+            ReportAccidentViewModel reportAccidentViewModel,
+            AddServiceViewModel addServiceViewModel)
         {
             _eventAggregator = eventAggregator;
             HeaderViewModel = headerViewModel;
@@ -34,7 +39,9 @@ namespace VehicleDiary.Main.ViewModels
             _profileConductorViewModel = profileConductorViewModel;
             _vehicleReportViewModel = vehicleReportViewModel;
             _createSaleListingViewModel = createSaleListingViewModel;
-
+            _reportAccidentViewModel = reportAccidentViewModel;
+            _addServiceViewModel = addServiceViewModel;
+            // COMMENT: I've read somewhere that this is automated, not sure, seems to work.
             //Items.AddRange(new Screen[] { _vinCheckViewModel });
         }
 
@@ -63,6 +70,12 @@ namespace VehicleDiary.Main.ViewModels
                     break;
                 case MainNavigationMessages.MARKET:
                     ActivateItem(_marketViewModel);
+                    break;
+                case MainNavigationMessages.REPORT_ACCIDENT:
+                    ActivateItem(_reportAccidentViewModel);
+                    break;
+                case MainNavigationMessages.ADD_SERVICE:
+                    ActivateItem(_addServiceViewModel);
                     break;
                 case MainNavigationMessages.PROFILE:
                     ActivateItem(_profileConductorViewModel);

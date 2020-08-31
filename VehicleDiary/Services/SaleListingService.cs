@@ -16,7 +16,6 @@ namespace VehicleDiary.Services
         }
 
         public List<SaleListingModel> SaleListings { get; set; }
-        public VehicleModel VehicleForNewSaleListing { get; set; }
         public async Task<IEnumerable<SaleListingModel>> GetSaleListingsWithVehicles()
         {
             return await _context.Set<SaleListingModel>().Include(sl => sl.Vehicle).ToListAsync();
