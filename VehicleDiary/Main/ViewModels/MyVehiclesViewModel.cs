@@ -14,13 +14,13 @@ namespace VehicleDiary.Main.ViewModels
     public class MyVehiclesViewModel : Screen, IHandle<DataMessage>
     {
         private readonly IEventAggregator _eventAggregator;
-        private readonly UniversalCRUDService<VehicleSpecificationModel> _vehicleSpecificationCrudService;
-        private readonly UniversalCRUDService<PersonUserVehicleModel> _personUserVehicleCrudService;
         private readonly UniversalCRUDService<VehicleModel> _vehicleCrudService;
+        private readonly UniversalCRUDService<PersonUserVehicleModel> _personUserVehicleCrudService;
+        private readonly UniversalCRUDService<VehicleSpecificationModel> _vehicleSpecificationCrudService;
+        private readonly UniversalCRUDService<SaleListingModel> _saleListingCrudService;
         private readonly UserService _userService;
         private readonly VehicleService _vehicleService;
         private readonly PersonUserService _personUserService;
-        private readonly SaleListingService _saleListingService;
         private string _selectedMake = Make.AUDI.ToString();
         private string _selectedModel = Model.A1.ToString();
         private string _vin;
@@ -48,24 +48,24 @@ namespace VehicleDiary.Main.ViewModels
         public string SelectedGearboxType { get => _selectedGearboxType; set => Set(ref _selectedGearboxType, value); }
         public BindableCollection<VehicleViewModel> Vehicles { get; set; }
 
-        public MyVehiclesViewModel(IEventAggregator eventAggregator, 
-            UniversalCRUDService<VehicleSpecificationModel> vehicleSpecificationCrudService, 
-            UniversalCRUDService<PersonUserVehicleModel> personUserVehicleCrudService, 
-            UniversalCRUDService<VehicleModel> vehicleCrudService, 
-            PersonUserService personUserService, 
-            UserService userService, 
-            VehicleService vehicleService,
-            SaleListingService saleListingService)
+        public MyVehiclesViewModel(IEventAggregator eventAggregator,
+            UniversalCRUDService<PersonUserVehicleModel> personUserVehicleCrudService,
+            UniversalCRUDService<VehicleModel> vehicleCrudService,
+            UniversalCRUDService<VehicleSpecificationModel> vehicleSpecificationCrudService,
+            UniversalCRUDService<SaleListingModel> saleListingCrudService,
+            PersonUserService personUserService,
+            UserService userService,
+            VehicleService vehicleService)
         {
             _eventAggregator = eventAggregator;
             _eventAggregator.Subscribe(this);
-            _vehicleSpecificationCrudService = vehicleSpecificationCrudService;
-            _personUserVehicleCrudService = personUserVehicleCrudService;
             _vehicleCrudService = vehicleCrudService;
+            _personUserVehicleCrudService = personUserVehicleCrudService;
+            _vehicleSpecificationCrudService = vehicleSpecificationCrudService;
+            _saleListingCrudService = saleListingCrudService;
             _vehicleService = vehicleService;
             _personUserService = personUserService;
             _userService = userService;
-            _saleListingService = saleListingService;
             Vehicles = new BindableCollection<VehicleViewModel>();
         }
 
@@ -103,7 +103,6 @@ namespace VehicleDiary.Main.ViewModels
         {
             get => Enum.GetValues(typeof(GearboxType)).Cast<GearboxType>().Select(v => v.ToString()).ToList();
         }
-
 
         public async void AddVehicle()
         {
@@ -169,6 +168,20 @@ namespace VehicleDiary.Main.ViewModels
                             break;
                     }
                     break;
+                case DataMessages.SALE_LISTING_CREATED:
+                    if (_userService.User.UserType == UserType.PERSON)
+                    {
+                        _personUserService.Vehicles.Find(v => v.Vin == ((SaleListingModel)dataMessage.Data).Vehicle.Vin).SaleListing = ((SaleListingModel)dataMessage.Data);
+                        Vehicles.First(v => v.Vin == ((SaleListingModel)dataMessage.Data).Vehicle.Vin).SetVehicleSaleListing((SaleListingModel)dataMessage.Data);
+                    }
+                    break;
+                case DataMessages.SALE_LISTING_REMOVED:
+                    if (_userService.User.UserType == UserType.PERSON)
+                    {
+                        _personUserService.Vehicles.Find(v => v.SaleListing != null && v.SaleListing.Id == ((SaleListingModel)dataMessage.Data).Id).SaleListing = null;
+                        Vehicles.First(v => v.Vin == ((SaleListingModel)dataMessage.Data).Vehicle.Vin).SetVehicleSaleListing(null);
+                    }
+                    break;
                 case DataMessages.CLEAR_ALL:
                     UnsubscribeAll();
                     Vehicles.Clear();
@@ -180,7 +193,13 @@ namespace VehicleDiary.Main.ViewModels
 
         private VehicleViewModel CreateVehicleViewModel(VehicleModel vehicleModel)
         {
-            VehicleViewModel vehicleViewModel = new VehicleViewModel(_eventAggregator, vehicleModel, _vehicleService, _saleListingService, _vehicleCrudService, _vehicleSpecificationCrudService);
+            VehicleViewModel vehicleViewModel = new VehicleViewModel(
+                _eventAggregator,
+                vehicleModel,
+                _vehicleService,
+                _vehicleCrudService,
+                _vehicleSpecificationCrudService,
+                _saleListingCrudService);
             vehicleViewModel.VehicleRemoved += OnVehicleRemoved;
             return vehicleViewModel;
         }

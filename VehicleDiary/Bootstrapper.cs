@@ -35,7 +35,6 @@ namespace VehicleDiary
             builder.RegisterType<UserService>().SingleInstance();
             builder.RegisterType<PersonUserService>().SingleInstance();
             builder.RegisterType<ServiceUserService>().SingleInstance();
-            builder.RegisterType<SaleListingService>().SingleInstance();
             builder.RegisterType<VehicleService>().SingleInstance();
 
             builder.RegisterType<UniversalCRUDService<UserModel>>().InstancePerDependency();
@@ -45,6 +44,7 @@ namespace VehicleDiary
             builder.RegisterType<UniversalCRUDService<PersonUserVehicleModel>>().InstancePerDependency();
             builder.RegisterType<UniversalCRUDService<VehicleSpecificationModel>>().InstancePerDependency();
             builder.RegisterType<UniversalCRUDService<VehicleAccidentModel>>().InstancePerDependency();
+            builder.RegisterType<UniversalCRUDService<SaleListingModel>>().InstancePerDependency();
 
             // AUTHENTICATE
             builder.RegisterType<AuthenticationConductorViewModel>().SingleInstance();

@@ -226,7 +226,6 @@
     <Compile Include="Authenticate\Views\PasswordBoxAttach.cs" />
     <Compile Include="Services\ICRUDService.cs" />
     <Compile Include="Services\PersonUserService.cs" />
-    <Compile Include="Services\SaleListingService.cs" />
     <Compile Include="Services\ServiceUserService.cs" />
     <Compile Include="Services\UniversalCRUDService.cs" />
     <Compile Include="Services\UserService.cs" />

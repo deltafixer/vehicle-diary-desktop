@@ -12,6 +12,7 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -37,10 +38,20 @@
                 <TextBlock Text="{Binding Price, FallbackValue='10.000'}" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="4"/>
 
                 <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Label Content="Suggestion score: "/>
+                    <Label Content="Suggestion score: " Margin="0 10"/>
                     <TextBlock Text="{Binding SuggestionScore, FallbackValue='50'}" VerticalAlignment="Center"/>
                     <TextBlock Text="/100" VerticalAlignment="Center"/>
                 </StackPanel>
+
+                <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" Visibility="{Binding ControlsVisibility}" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="EditListing" Content="Edit listing" Grid.Column="0" HorizontalAlignment="Center" />
+                    <Button x:Name="RemoveListing" Content="Remove listing" Grid.Column="1" HorizontalAlignment="Center" />
+                </Grid>
             </Grid>
         </Border>
     </Grid>

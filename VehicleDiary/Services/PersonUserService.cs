@@ -37,7 +37,7 @@ namespace VehicleDiary.Services
         // I couldn't figure out in the moment of writing whether this is possible in my database design
         public async Task<IEnumerable<VehicleModel>> GetPersonUserVehicles(List<string> vins)
         {
-            return await _context.Set<VehicleModel>().Where(o => vins.Contains(o.Vin)).Include(v => v.VehicleSpecification).ToListAsync();
+            return await _context.Set<VehicleModel>().Where(o => vins.Contains(o.Vin)).Include(v => v.VehicleSpecification).Include(v => v.SaleListing).ToListAsync();
         }
 
         public void Handle(DataMessage message)

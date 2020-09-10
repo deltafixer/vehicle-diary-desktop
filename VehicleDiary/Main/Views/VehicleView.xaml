@@ -38,7 +38,7 @@
 
                     <Button x:Name="Remove" Content="Remove" Grid.Column="0" HorizontalAlignment="Center" />
                     <Button x:Name="ViewReport" Content="View report" Grid.Column="1" HorizontalAlignment="Center" />
-                    <Button x:Name="ListForSale" Content="List for sale" Grid.Column="2" HorizontalAlignment="Center" />
+                    <Button x:Name="SaleListingAction" Content="{Binding SaleListingActionLabel, FallbackValue='List for sale'}" Grid.Column="2" HorizontalAlignment="Center" />
                 </Grid>
             </Grid>
         </Border>
