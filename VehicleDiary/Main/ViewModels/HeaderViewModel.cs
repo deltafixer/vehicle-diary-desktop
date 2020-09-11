@@ -61,6 +61,7 @@ namespace VehicleDiary.Main.ViewModels
                             MenuItems.AddRange(new BindableCollection<CustomMenuItem>
                             {
                                 new CustomMenuItem { Name = "Add service", OnClick = GoToAddService },
+                                new CustomMenuItem { Name = "My services", OnClick = GoToMyServices},
                             });
                             ServiceUserModel serviceUser = await _serviceUserService.Get(_userService.User.Username);
                             _serviceUserService.ServiceUser = serviceUser;
@@ -105,6 +106,13 @@ namespace VehicleDiary.Main.ViewModels
                 return new CommandHandler(() => ActionGoToAddService());
             }
         }
+        public ICommand GoToMyServices
+        {
+            get
+            {
+                return new CommandHandler(() => ActionGoToMyServices());
+            }
+        }
 
         public void ActionGoToMyVehicles()
         {
@@ -122,6 +130,10 @@ namespace VehicleDiary.Main.ViewModels
         public void ActionGoToAddService()
         {
             _eventAggregator.PublishOnUIThread(new MainNavigationMessage(MainNavigationMessages.ADD_SERVICE));
+        }
+        public void ActionGoToMyServices()
+        {
+            _eventAggregator.PublishOnUIThread(new MainNavigationMessage(MainNavigationMessages.MY_SERVICES));
         }
 
         public void GoToCheckVin() => _eventAggregator.PublishOnUIThread(new MainNavigationMessage(MainNavigationMessages.CHECK_VIN));

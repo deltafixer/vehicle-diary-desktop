@@ -16,7 +16,9 @@
         REPORT_ACCIDENT,
         PROFILE,
         VEHICLE_REPORT,
-        VEHICLE_SALE_LISTING,
+        SALE_LISTING,
         ADD_SERVICE,
+        SERVICE_DETAILS,
+        MY_SERVICES,
     }
 }

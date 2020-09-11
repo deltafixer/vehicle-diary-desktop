@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using VehicleDiary.Main.Messages;
 using VehicleDiary.Models;
 using VehicleDiary.Services;
 
@@ -84,6 +83,5 @@ namespace VehicleDiary.Main.ViewModels
             SaleListings.Remove(saleListingToRemove);
             MessageBox.Show("Successfully removed the sale listing!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
         }
-
     }
 }

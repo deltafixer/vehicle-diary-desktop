@@ -54,7 +54,7 @@ namespace VehicleDiary.Main.ViewModels
             if (_vehicle.SaleListing == null)
             {
                 _vehicleService.VehicleForSaleListing = _vehicle;
-                _eventAggregator.PublishOnUIThread(new MainNavigationMessage(MainNavigationMessages.VEHICLE_SALE_LISTING));
+                _eventAggregator.PublishOnUIThread(new MainNavigationMessage(MainNavigationMessages.SALE_LISTING));
             }
             else
             {
@@ -66,8 +66,7 @@ namespace VehicleDiary.Main.ViewModels
         {
             try
             {
-                VehicleModel vehicle = await _vehicleService.GetVehicleWithAllData(Vin);
-                _vehicleService.Vehicle = vehicle;
+                _vehicleService.Vehicle = await _vehicleService.GetVehicleWithAllData(Vin);
                 _eventAggregator.PublishOnUIThread(new MainNavigationMessage(MainNavigationMessages.VEHICLE_REPORT));
             }
             catch (Exception)

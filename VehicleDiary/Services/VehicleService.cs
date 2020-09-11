@@ -12,6 +12,7 @@ namespace VehicleDiary.Services
         private readonly VehicleDiaryDbContext _context;
         public VehicleModel Vehicle { get; set; }
         public VehicleModel VehicleForSaleListing { get; set; }
+        public VehicleServiceModel VehicleServiceForServiceView { get; set; }
 
         private static readonly int RECOMMENDED_SERVICE_COUNT_PER_YEAR = 4;
         private static readonly int MAXIMUM_ACCIDENT_COUNT = 4;
@@ -28,6 +29,8 @@ namespace VehicleDiary.Services
         {
             return await _context.Set<VehicleModel>().Where(v => v.Vin == vin).Include(v => v.VehicleSpecification).Include(v => v.Accidents).Include(v => v.Services).Include(v => v.SaleListing).FirstOrDefaultAsync();
         }
+
+      
 
         public async Task<VehicleModel> GetVehicle(string vin)
         {
@@ -106,6 +109,18 @@ namespace VehicleDiary.Services
             double accidentScore = (MAXIMUM_ACCIDENT_COUNT - numberOfAccidents) / MAXIMUM_ACCIDENT_COUNT;
 
             return priceScore + serviceScore + accidentScore;
+        }
+
+        // VEHICLE SERVICE
+
+        public async Task<VehicleServiceModel> GetVehicleServiceData(int vehicleServiceId)
+        {
+            return await _context.Set<VehicleServiceModel>().Where(vs => vs.Id == vehicleServiceId).Include(vs => vs.ServicedBy).FirstOrDefaultAsync();
+        }
+
+        public async Task<IEnumerable<VehicleServiceModel>> GetVehicleServicesForServiceUser(int serviceUserId)
+        {
+            return await _context.Set<VehicleServiceModel>().Where(vs => vs.ServicedBy.Id == serviceUserId).Include(vs => vs.Vehicle).ToListAsync();
         }
     }
 }

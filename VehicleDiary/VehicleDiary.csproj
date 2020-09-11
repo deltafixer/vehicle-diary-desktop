@@ -130,10 +130,12 @@
     <Compile Include="Authenticate\Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Main\ViewModels\MyServicesViewModel.cs" />
     <Compile Include="Main\ViewModels\PersonUserProfileViewModel.cs" />
     <Compile Include="Main\ViewModels\ProfileConductorViewModel.cs" />
     <Compile Include="Main\ViewModels\ReportAccidentViewModel.cs" />
     <Compile Include="Main\ViewModels\SaleListingViewModel.cs" />
+    <Compile Include="Main\ViewModels\ServiceDetailsViewModel.cs" />
     <Compile Include="Main\ViewModels\ServiceUserProfileViewModel.cs" />
     <Compile Include="Main\ViewModels\VehicleAccidentViewModel.cs" />
     <Compile Include="Main\ViewModels\VehicleReportViewModel.cs" />
@@ -170,6 +172,9 @@
     <Compile Include="Main\Views\HeaderView.xaml.cs">
       <DependentUpon>HeaderView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Main\Views\MyServicesView.xaml.cs">
+      <DependentUpon>MyServicesView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Main\Views\MyVehiclesView.xaml.cs">
       <DependentUpon>MyVehiclesView.xaml</DependentUpon>
     </Compile>
@@ -185,6 +190,9 @@
     </Compile>
     <Compile Include="Main\Views\SaleListingView.xaml.cs">
       <DependentUpon>SaleListingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Main\Views\ServiceDetailsView.xaml.cs">
+      <DependentUpon>ServiceDetailsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Main\Views\ServiceUserProfileView.xaml.cs">
       <DependentUpon>ServiceUserProfileView.xaml</DependentUpon>
@@ -308,6 +316,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Main\Views\MyServicesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Main\Views\MyVehiclesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -325,6 +337,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Main\Views\SaleListingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Main\Views\ServiceDetailsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

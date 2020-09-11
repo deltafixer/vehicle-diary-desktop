@@ -15,6 +15,8 @@ namespace VehicleDiary.Main.ViewModels
         private readonly CreateSaleListingViewModel _createSaleListingViewModel;
         private readonly ReportAccidentViewModel _reportAccidentViewModel;
         private readonly AddServiceViewModel _addServiceViewModel;
+        private readonly ServiceDetailsViewModel _serviceDetailsViewModel;
+        private readonly MyServicesViewModel _myServicesViewModel;
         public HeaderViewModel HeaderViewModel { get; }
         public ProfilePanelViewModel ProfilePanelViewModel { get; }
 
@@ -28,7 +30,9 @@ namespace VehicleDiary.Main.ViewModels
             VehicleReportViewModel vehicleReportViewModel,
             CreateSaleListingViewModel createSaleListingViewModel,
             ReportAccidentViewModel reportAccidentViewModel,
-            AddServiceViewModel addServiceViewModel)
+            AddServiceViewModel addServiceViewModel,
+            ServiceDetailsViewModel serviceDetailsViewModel,
+            MyServicesViewModel myServicesViewModel)
         {
             _eventAggregator = eventAggregator;
             HeaderViewModel = headerViewModel;
@@ -41,6 +45,8 @@ namespace VehicleDiary.Main.ViewModels
             _createSaleListingViewModel = createSaleListingViewModel;
             _reportAccidentViewModel = reportAccidentViewModel;
             _addServiceViewModel = addServiceViewModel;
+            _serviceDetailsViewModel = serviceDetailsViewModel;
+            _myServicesViewModel = myServicesViewModel;
             // COMMENT: I've read somewhere that this is automated, not sure, seems to work.
             //Items.AddRange(new Screen[] { _vinCheckViewModel });
         }
@@ -83,8 +89,14 @@ namespace VehicleDiary.Main.ViewModels
                 case MainNavigationMessages.VEHICLE_REPORT:
                     ActivateItem(_vehicleReportViewModel);
                     break;
-                case MainNavigationMessages.VEHICLE_SALE_LISTING:
+                case MainNavigationMessages.SALE_LISTING:
                     ActivateItem(_createSaleListingViewModel);
+                    break;
+                case MainNavigationMessages.SERVICE_DETAILS:
+                    ActivateItem(_serviceDetailsViewModel);
+                    break;
+                case MainNavigationMessages.MY_SERVICES:
+                    ActivateItem(_myServicesViewModel);
                     break;
                 default:
                     break;

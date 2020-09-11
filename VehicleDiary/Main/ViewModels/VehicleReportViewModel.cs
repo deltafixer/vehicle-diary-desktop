@@ -12,13 +12,15 @@ namespace VehicleDiary.Main.ViewModels
 {
     public class VehicleReportViewModel : Screen
     {
+        private readonly IEventAggregator _eventAggregator;
         private readonly VehicleService _vehicleService;
         private VehicleModel _vehicle;
         public BindableCollection<VehicleAccidentViewModel> Accidents { get; set; }
         public BindableCollection<VehicleServiceViewModel> Services { get; set; }
 
-        public VehicleReportViewModel(VehicleService vehicleService)
+        public VehicleReportViewModel(IEventAggregator eventAggregator, VehicleService vehicleService)
         {
+            _eventAggregator = eventAggregator;
             _vehicleService = vehicleService;
         }
 
@@ -31,7 +33,15 @@ namespace VehicleDiary.Main.ViewModels
             Accidents.AddRange(_vehicle.Accidents.Select(accident => new VehicleAccidentViewModel(accident)));
 
             Services = new BindableCollection<VehicleServiceViewModel>();
-            Services.AddRange(_vehicle.Services.Select(service => new VehicleServiceViewModel(service)));
+            Services.AddRange(_vehicle.Services.Select(service => new VehicleServiceViewModel(_eventAggregator, service, _vehicleService)));
+            Refresh();
+        }
+
+        protected override void OnDeactivate(bool close)
+        {
+            base.OnDeactivate(close);
+            Accidents.Clear();
+            Services.Clear();
         }
 
         public string Vin => _vehicle.Vin;

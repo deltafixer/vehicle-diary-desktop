@@ -66,6 +66,8 @@ namespace VehicleDiary
             builder.RegisterType<CreateSaleListingViewModel>().SingleInstance();
             builder.RegisterType<ReportAccidentViewModel>().SingleInstance();
             builder.RegisterType<AddServiceViewModel>().SingleInstance();
+            builder.RegisterType<ServiceDetailsViewModel>().SingleInstance();
+            builder.RegisterType<MyServicesViewModel>().SingleInstance();
         }
     }
 }
