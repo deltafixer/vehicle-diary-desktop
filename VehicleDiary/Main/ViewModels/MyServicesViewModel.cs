@@ -10,21 +10,19 @@ namespace VehicleDiary.Main.ViewModels
     public class MyServicesViewModel : Screen
     {
         private readonly IEventAggregator _eventAggregator;
-        private readonly UserService _userService;
         private readonly ServiceUserService _serviceUserService;
         private readonly VehicleService _vehicleService;
+        private float _totalServicesPrice = 0;
         public BindableCollection<VehicleServiceViewModel> VehicleServices { get; set; }
-
+        public float TotalServicesPrice { get => _totalServicesPrice; set { _totalServicesPrice = value; NotifyOfPropertyChange(() => TotalServicesPrice); } }
 
         public MyServicesViewModel(
             IEventAggregator eventAggregator,
-            UserService userService,
             ServiceUserService serviceUserService,
             VehicleService vehicleService)
         {
             _eventAggregator = eventAggregator;
             _eventAggregator.Subscribe(this);
-            _userService = userService;
             _serviceUserService = serviceUserService;
             _vehicleService = vehicleService;
             VehicleServices = new BindableCollection<VehicleServiceViewModel>();
@@ -37,6 +35,7 @@ namespace VehicleDiary.Main.ViewModels
             foreach (VehicleServiceModel vehicleService in vehicleServices)
             {
                 _serviceUserService.VehicleServices.Add(vehicleService);
+                TotalServicesPrice += vehicleService.Price;
             }
             VehicleServices.AddRange(_serviceUserService.VehicleServices.Select(vehicleService => new VehicleServiceViewModel(_eventAggregator, vehicleService, _vehicleService)));
             AllTimeSelectedColor = _selectedColor;
@@ -67,7 +66,8 @@ namespace VehicleDiary.Main.ViewModels
         public void AllTime()
         {
             VehicleServices.Clear();
-            VehicleServices.AddRange(_serviceUserService.VehicleServices.Select(vehicleService => new VehicleServiceViewModel(_eventAggregator, vehicleService, _vehicleService)));
+            TotalServicesPrice = 0;
+            VehicleServices.AddRange(_serviceUserService.VehicleServices.Select(vehicleService => { TotalServicesPrice += vehicleService.Price; return new VehicleServiceViewModel(_eventAggregator, vehicleService, _vehicleService); }));
             AllTimeSelectedColor = _selectedColor;
             ThisMonthSelectedColor = _defaultColor;
             LastWeekSelectedColor = _defaultColor;
@@ -78,7 +78,8 @@ namespace VehicleDiary.Main.ViewModels
         {
             int currentMonth = DateTime.Today.Month;
             VehicleServices.Clear();
-            VehicleServices.AddRange(_serviceUserService.VehicleServices.FindAll(vs => vs.DateTaken.Month == currentMonth).Select(vehicleService => new VehicleServiceViewModel(_eventAggregator, vehicleService, _vehicleService)));
+            TotalServicesPrice = 0;
+            VehicleServices.AddRange(_serviceUserService.VehicleServices.FindAll(vs => vs.DateTaken.Month == currentMonth).Select(vehicleService => { TotalServicesPrice += vehicleService.Price; return new VehicleServiceViewModel(_eventAggregator, vehicleService, _vehicleService); }));
             AllTimeSelectedColor = _defaultColor;
             ThisMonthSelectedColor = _selectedColor;
             LastWeekSelectedColor = _defaultColor;
@@ -90,7 +91,8 @@ namespace VehicleDiary.Main.ViewModels
             DateTime today = DateTime.Today;
             VehicleServices.Clear();
             DateTime mondayOfLastWeek = today.AddDays(-6);
-            VehicleServices.AddRange(_serviceUserService.VehicleServices.FindAll(vs => vs.DateTaken >= mondayOfLastWeek).Select(vehicleService => new VehicleServiceViewModel(_eventAggregator, vehicleService, _vehicleService)));
+            TotalServicesPrice = 0;
+            VehicleServices.AddRange(_serviceUserService.VehicleServices.FindAll(vs => vs.DateTaken >= mondayOfLastWeek).Select(vehicleService => { TotalServicesPrice += vehicleService.Price; return new VehicleServiceViewModel(_eventAggregator, vehicleService, _vehicleService); }));
             AllTimeSelectedColor = _defaultColor;
             ThisMonthSelectedColor = _defaultColor;
             LastWeekSelectedColor = _selectedColor;
@@ -101,7 +103,8 @@ namespace VehicleDiary.Main.ViewModels
         {
             DateTime today = DateTime.Today;
             VehicleServices.Clear();
-            VehicleServices.AddRange(_serviceUserService.VehicleServices.FindAll(vs => vs.DateTaken == today).Select(vehicleService => new VehicleServiceViewModel(_eventAggregator, vehicleService, _vehicleService)));
+            TotalServicesPrice = 0;
+            VehicleServices.AddRange(_serviceUserService.VehicleServices.FindAll(vs => vs.DateTaken == today).Select(vehicleService => { TotalServicesPrice += vehicleService.Price; return new VehicleServiceViewModel(_eventAggregator, vehicleService, _vehicleService); }));
             AllTimeSelectedColor = _defaultColor;
             ThisMonthSelectedColor = _defaultColor;
             LastWeekSelectedColor = _defaultColor;

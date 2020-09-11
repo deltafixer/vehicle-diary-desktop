@@ -10,12 +10,18 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="70" />
             <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <TextBlock Text="My services" HorizontalAlignment="Center" FontSize="36" Grid.Row="0"/>
 
-        <Grid Grid.Row="1">
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Margin="0 0 0 10">
+            <TextBlock Text="Total earned (€): " />
+            <TextBlock x:Name="TotalServicesPrice" />
+        </StackPanel>
+        
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -29,7 +35,7 @@
             <Button x:Name="Today" Content="Today" Grid.Column="3" HorizontalAlignment="Center" Background="{Binding TodaySelectedColor, FallbackValue='#0095FF'}" />
         </Grid>
         
-        <ItemsControl x:Name="VehicleServices" Grid.Row="2">
+        <ItemsControl x:Name="VehicleServices" Grid.Row="3">
             <ItemsControl.Template>
                 <ControlTemplate>
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
