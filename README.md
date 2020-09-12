@@ -125,5 +125,4 @@ Screens are responsive.
 
 ## Missing from initial plan
 
-1. Edit sale listing.
-2. Admin account with complete control (not really a must-have due to users being able to manipulate their own data).
+1. Admin account with complete control (not really a must-have due to users being able to manipulate their own data).
