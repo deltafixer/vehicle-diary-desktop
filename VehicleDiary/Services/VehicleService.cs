@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Threading.Tasks;
 using VehicleDiary.Models;
@@ -12,6 +13,7 @@ namespace VehicleDiary.Services
         private readonly VehicleDiaryDbContext _context;
         public VehicleModel Vehicle { get; set; }
         public VehicleModel VehicleForSaleListing { get; set; }
+        public SaleListingModel SaleListingForEdit { get; set; }
         public VehicleServiceModel VehicleServiceForServiceView { get; set; }
 
         private static readonly int RECOMMENDED_SERVICE_COUNT_PER_YEAR = 4;
@@ -109,6 +111,13 @@ namespace VehicleDiary.Services
             double accidentScore = (MAXIMUM_ACCIDENT_COUNT - numberOfAccidents) / MAXIMUM_ACCIDENT_COUNT;
 
             return priceScore + serviceScore + accidentScore;
+        }
+
+        public async Task<SaleListingModel> UpdateSaleListing(SaleListingModel saleListingModel)
+        {
+            _context.Set<SaleListingModel>().AddOrUpdate(saleListingModel);
+            await _context.SaveChangesAsync();
+            return saleListingModel;
         }
 
         // VEHICLE SERVICE

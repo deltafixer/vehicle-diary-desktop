@@ -37,9 +37,12 @@ namespace VehicleDiary.Main.ViewModels
         protected override void OnActivate()
         {
             base.OnActivate();
-            FirstName = _personUserService.PersonUser.FirstName;
-            LastName = _personUserService.PersonUser.LastName;
-            SelectedPersonType = _personUserService.PersonUser.PersonType.ToString();
+            if (_personUserService.PersonUser != null)
+            {
+                FirstName = _personUserService.PersonUser.FirstName;
+                LastName = _personUserService.PersonUser.LastName;
+                SelectedPersonType = _personUserService.PersonUser.PersonType.ToString();
+            }
         }
 
         public string FirstName

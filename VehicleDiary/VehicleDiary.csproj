@@ -119,7 +119,7 @@
     </Compile>
     <Compile Include="Authenticate\Messages\AuthenticationNavigationMessage.cs" />
     <Compile Include="Main\ViewModels\AddServiceViewModel.cs" />
-    <Compile Include="Main\ViewModels\CreateSaleListingViewModel.cs" />
+    <Compile Include="Main\ViewModels\CreateEditSaleListingViewModel.cs" />
     <Compile Include="Main\ViewModels\MarketViewModel.cs" />
     <Compile Include="Authenticate\ViewModels\RegisterPersonViewModel.cs" />
     <Compile Include="Authenticate\ViewModels\RegisterServiceViewModel.cs" />
@@ -143,8 +143,8 @@
     <Compile Include="Main\Views\AddServiceView.xaml.cs">
       <DependentUpon>AddServiceView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Main\Views\CreateSaleListingView.xaml.cs">
-      <DependentUpon>CreateSaleListingView.xaml</DependentUpon>
+    <Compile Include="Main\Views\CreateEditSaleListingView.xaml.cs">
+      <DependentUpon>CreateEditSaleListingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Main\Views\MarketView.xaml.cs">
       <DependentUpon>MarketView.xaml</DependentUpon>
@@ -292,7 +292,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Main\Views\CreateSaleListingView.xaml">
+    <Page Include="Main\Views\CreateEditSaleListingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

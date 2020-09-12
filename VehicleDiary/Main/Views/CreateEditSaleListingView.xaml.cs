@@ -17,11 +17,11 @@ using System.Windows.Shapes;
 namespace VehicleDiary.Main.Views
 {
     /// <summary>
-    /// Interaction logic for CreateSaleListingView.xaml
+    /// Interaction logic for CreateEditSaleListingView.xaml
     /// </summary>
-    public partial class CreateSaleListingView : UserControl
+    public partial class CreateEditSaleListingView : UserControl
     {
-        public CreateSaleListingView()
+        public CreateEditSaleListingView()
         {
             InitializeComponent();
         }

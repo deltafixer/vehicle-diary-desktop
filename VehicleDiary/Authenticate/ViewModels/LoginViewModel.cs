@@ -1,16 +1,13 @@
 ﻿using Caliburn.Micro;
-using System;
 using System.Threading.Tasks;
 using System.Windows;
 using VehicleDiary.Authenticate.Messages;
 using VehicleDiary.Main.Messages;
-using VehicleDiary.Main.ViewModels;
 using VehicleDiary.Models;
 using VehicleDiary.Services;
 
 namespace VehicleDiary.Authenticate.ViewModels
 {
-    using static VehicleDiary.Models.Enums.UserEnums;
     using BCrypt = BCrypt.Net.BCrypt;
     public class LoginViewModel : Screen
     {

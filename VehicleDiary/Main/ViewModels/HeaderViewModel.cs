@@ -143,6 +143,7 @@ namespace VehicleDiary.Main.ViewModels
         {
             _userService.User = null;
             _personUserService.PersonUser = null;
+            _serviceUserService.ServiceUser = null;
             MenuItems.Clear();
             _eventAggregator.PublishOnUIThread(new DataMessage(DataMessages.CLEAR_ALL));
             _eventAggregator.PublishOnUIThread(new NavigationMessage(NavigationMessages.AUTHENTICATION));

@@ -53,12 +53,13 @@ namespace VehicleDiary.Main.ViewModels
         {
             if (_vehicle.SaleListing == null)
             {
+                _vehicleService.SaleListingForEdit = null;
                 _vehicleService.VehicleForSaleListing = _vehicle;
-                _eventAggregator.PublishOnUIThread(new MainNavigationMessage(MainNavigationMessages.SALE_LISTING));
+                _eventAggregator.PublishOnUIThread(new MainNavigationMessage(MainNavigationMessages.CREATE_EDIT_SALE_LISTING));
             }
             else
             {
-                // TODO: 
+                _eventAggregator.PublishOnUIThread(new MainNavigationMessage(MainNavigationMessages.MARKET));
             }
         }
 

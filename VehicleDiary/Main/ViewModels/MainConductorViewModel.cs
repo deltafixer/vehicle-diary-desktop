@@ -4,7 +4,7 @@ using VehicleDiary.Main.Messages;
 
 namespace VehicleDiary.Main.ViewModels
 {
-    public class MainConductorViewModel : Conductor<Screen>.Collection.OneActive, IHandle<MainNavigationMessage>
+    public class MainConductorViewModel : Conductor<Screen>.Collection.OneActive, IHandle<MainNavigationMessage>, IHandle<DataMessage>
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly VinCheckViewModel _vinCheckViewModel;
@@ -12,7 +12,7 @@ namespace VehicleDiary.Main.ViewModels
         private readonly MarketViewModel _marketViewModel;
         private readonly ProfileConductorViewModel _profileConductorViewModel;
         private readonly VehicleReportViewModel _vehicleReportViewModel;
-        private readonly CreateSaleListingViewModel _createSaleListingViewModel;
+        private readonly CreateEditSaleListingViewModel _createSaleListingViewModel;
         private readonly ReportAccidentViewModel _reportAccidentViewModel;
         private readonly AddServiceViewModel _addServiceViewModel;
         private readonly ServiceDetailsViewModel _serviceDetailsViewModel;
@@ -28,7 +28,7 @@ namespace VehicleDiary.Main.ViewModels
             MarketViewModel marketViewModel,
             ProfileConductorViewModel profileConductorViewModel,
             VehicleReportViewModel vehicleReportViewModel,
-            CreateSaleListingViewModel createSaleListingViewModel,
+            CreateEditSaleListingViewModel createSaleListingViewModel,
             ReportAccidentViewModel reportAccidentViewModel,
             AddServiceViewModel addServiceViewModel,
             ServiceDetailsViewModel serviceDetailsViewModel,
@@ -89,7 +89,7 @@ namespace VehicleDiary.Main.ViewModels
                 case MainNavigationMessages.VEHICLE_REPORT:
                     ActivateItem(_vehicleReportViewModel);
                     break;
-                case MainNavigationMessages.SALE_LISTING:
+                case MainNavigationMessages.CREATE_EDIT_SALE_LISTING:
                     ActivateItem(_createSaleListingViewModel);
                     break;
                 case MainNavigationMessages.SERVICE_DETAILS:
@@ -100,6 +100,20 @@ namespace VehicleDiary.Main.ViewModels
                     break;
                 default:
                     break;
+            }
+        }
+
+        public void Handle(DataMessage message)
+        {
+            if (message.Message == DataMessages.CLEAR_ALL)
+            {
+                // COMMENT: this block should close all of the screens when loging out
+                // however, I don't believe it does. I have handled the exception-throwing cases with IFs
+                // I couldn't find the reason for this not closing them. Debugging shows correct items...
+                if (Items.Count > 0)
+                {
+                    DeactivateItem(Items[0], true);
+                }
             }
         }
     }

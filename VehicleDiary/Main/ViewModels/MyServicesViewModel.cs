@@ -31,14 +31,17 @@ namespace VehicleDiary.Main.ViewModels
         protected override async void OnActivate()
         {
             base.OnActivate();
-            IEnumerable<VehicleServiceModel> vehicleServices = await _vehicleService.GetVehicleServicesForServiceUser(_serviceUserService.ServiceUser.Id);
-            foreach (VehicleServiceModel vehicleService in vehicleServices)
+            if (_serviceUserService.ServiceUser != null)
             {
-                _serviceUserService.VehicleServices.Add(vehicleService);
-                TotalServicesPrice += vehicleService.Price;
+                IEnumerable<VehicleServiceModel> vehicleServices = await _vehicleService.GetVehicleServicesForServiceUser(_serviceUserService.ServiceUser.Id);
+                foreach (VehicleServiceModel vehicleService in vehicleServices)
+                {
+                    _serviceUserService.VehicleServices.Add(vehicleService);
+                    TotalServicesPrice += vehicleService.Price;
+                }
+                VehicleServices.AddRange(_serviceUserService.VehicleServices.Select(vehicleService => new VehicleServiceViewModel(_eventAggregator, vehicleService, _vehicleService)));
+                AllTimeSelectedColor = _selectedColor;
             }
-            VehicleServices.AddRange(_serviceUserService.VehicleServices.Select(vehicleService => new VehicleServiceViewModel(_eventAggregator, vehicleService, _vehicleService)));
-            AllTimeSelectedColor = _selectedColor;
         }
 
         protected override void OnDeactivate(bool close)

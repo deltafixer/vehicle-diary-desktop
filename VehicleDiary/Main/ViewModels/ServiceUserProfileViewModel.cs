@@ -35,8 +35,11 @@ namespace VehicleDiary.Main.ViewModels
         protected override void OnActivate()
         {
             base.OnActivate();
-            Name = _serviceUserService.ServiceUser.Name;
-            SelectedServiceType = _serviceUserService.ServiceUser.ServiceType.ToString();
+            if (_serviceUserService.ServiceUser != null)
+            {
+                Name = _serviceUserService.ServiceUser.Name;
+                SelectedServiceType = _serviceUserService.ServiceUser.ServiceType.ToString();
+            }
         }
 
         public string Name

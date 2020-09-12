@@ -52,6 +52,13 @@ namespace VehicleDiary.Main.ViewModels
         }
         public VehicleModel Vehicle { get => _saleListing.Vehicle; }
 
+        public void EditListing()
+        {
+            _vehicleService.VehicleForSaleListing = null;
+            _vehicleService.SaleListingForEdit = _saleListing;
+            _eventAggregator.PublishOnUIThread(new MainNavigationMessage(MainNavigationMessages.CREATE_EDIT_SALE_LISTING));
+        }
+
         public async Task RemoveListing()
         {
             if (MessageBox.Show("Are you sure you want to delete this sale listing?", "Confirm delete", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)

@@ -3,12 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using VehicleDiary.Main.Messages;
 using VehicleDiary.Models;
 using VehicleDiary.Services;
 
 namespace VehicleDiary.Main.ViewModels
 {
-    public class MarketViewModel : Screen
+    public class MarketViewModel : Screen, IHandle<DataMessage>
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly PersonUserService _personUserService;
@@ -26,6 +27,7 @@ namespace VehicleDiary.Main.ViewModels
             VehicleService vehicleService)
         {
             _eventAggregator = eventAggregator;
+            _eventAggregator.Subscribe(this);
             _personUserService = personUserService;
             _vehicleService = vehicleService;
             SaleListings = new BindableCollection<SaleListingViewModel>();
@@ -41,6 +43,8 @@ namespace VehicleDiary.Main.ViewModels
         protected override async void OnActivate()
         {
             base.OnActivate();
+            _vehicleService.SaleListings.Clear();
+            SaleListings.Clear();
             IEnumerable<SaleListingModel> saleListings = await _vehicleService.GetSaleListingsWithVehicles();
             if (saleListings != null)
             {
@@ -58,9 +62,7 @@ namespace VehicleDiary.Main.ViewModels
         protected override void OnDeactivate(bool close)
         {
             base.OnDeactivate(close);
-            _vehicleService.SaleListings.Clear();
             UnsubscribeAll();
-            SaleListings.Clear();
         }
 
         ~MarketViewModel()
@@ -82,6 +84,15 @@ namespace VehicleDiary.Main.ViewModels
             saleListingToRemove.SaleListingRemoved -= OnSaleListingRemoved;
             SaleListings.Remove(saleListingToRemove);
             MessageBox.Show("Successfully removed the sale listing!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        public void Handle(DataMessage message)
+        {
+            if (message.Message == DataMessages.CLEAR_ALL)
+            {
+                _vehicleService.SaleListings.Clear();
+                SaleListings.Clear();
+            }
         }
     }
 }
